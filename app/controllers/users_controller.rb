@@ -14,15 +14,30 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find_by(nickname: params[:nickname])
+    if @user.nickname == current_user.nickname
+      render "edit"
+    else
+      redirect_to mypage_path
+    end
   end
 
   def update
+    @user = User.find(current_user.id)
+    @user.update(user_params)
+    redirect_to mypage_path
   end
 
   def index
   end
 
   def destroy
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:nickname, :profile_image, :introduction)
   end
 
 end

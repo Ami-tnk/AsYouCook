@@ -1,5 +1,22 @@
 <h1>マイページ</h1>
+
+  <table>
+    <tr>
+      <%= attachment_image_tag @user, :profile_image, size:"60x60", format: 'jpeg', class: "rounded-circle" %>
+    </tr>
+    <tr>
+      <th>name</th>
+      <th><%= @user.nickname %></th>
+    </tr>
+    <tr>
+      <th>Introduction</th>
+      <th> <%= @user.introduction %></th>
+    </tr>
+  </table>
+
+<!--料理新規投稿-->
  <%= render 'cooks/newform' %>
+<!--end-->
 
 <!--自身が投稿した全ての料理-->
 <table class="table">
@@ -22,3 +39,4 @@
   </tr>
   <% end %>
 </table>
+<!--end-->
