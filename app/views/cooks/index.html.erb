@@ -2,11 +2,13 @@
   <table class="table">
     <tr>
       <th>料理名</th>
+      <th>作成者</th>
       <th>メモ</th>
     </tr>
     <% @cooks.each do |cook| %>
     <tr>
       <td><%= link_to cook.cooking_name, cook_path(cook.id) %></td>
+      <td><%= link_to cook.user.nickname, "/users/#{cook.user.nickname}" %></td>
       <td><%= cook.description %></td>
     </tr>
     <% end %>
