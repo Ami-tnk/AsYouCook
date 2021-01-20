@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def mypage
     @cook = Cook.new
+    @user = User.find(current_user.id)
+    @cooks = @user.cooks.all
   end
 
   def edit
@@ -17,5 +19,5 @@ class UsersController < ApplicationController
 
   def destroy
   end
-  
+
 end

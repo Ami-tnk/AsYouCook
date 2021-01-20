@@ -1,2 +1,24 @@
 <h1>マイページ</h1>
  <%= render 'cooks/newform' %>
+
+<!--自身が投稿した全ての料理-->
+<table class="table">
+  <tr>
+    <th></th>
+    <th>料理名</th>
+    <th>メモ</th>
+    <th>公開範囲</th>
+  </tr>
+  <% @cooks.each do |cook| %>
+  <tr>
+    <td>
+      <%= link_to cook_path(cook.id) do %>
+      <%= attachment_image_tag cook, :image, size:"60x60", format: 'jpeg' %>
+      <% end %>
+    </td>
+    <td><%= link_to cook.cooking_name, cook_path(cook.id) %></td>
+    <td><%= cook.description %></td>
+    <td><%= cook.is_active %></td>
+  </tr>
+  <% end %>
+</table>

@@ -1,6 +1,6 @@
 class CooksController < ApplicationController
   def index
-    @cooks = Cook.where(is_active: "true")
+    @cooks = Cook.where(is_active: "true") #公開中の料理のみ表示
   end
 
   def show
@@ -10,7 +10,7 @@ class CooksController < ApplicationController
     @cook = Cook.new(cook_params)
     @cook.user_id = current_user.id
     @cook.save
-    redirect_to cooks_path
+    redirect_to mypage_path
   end
 
   def edit
