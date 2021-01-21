@@ -1,14 +1,24 @@
 <h2>料理詳細画面</h2>
-  <table class="table">
+<!--ユーザー情報-->
+  <%= render 'users/user_info', user: @user %>
+<!--end-->
+
+<!--料理詳細-->
+  <table>
+  <tr>
+    <%= attachment_image_tag @cook, :image, size:"150x150", format: 'jpeg' %>
+  </tr>
     <tr>
       <th>料理名</th>
-      <th>メモ</th>
+      <th><%= @cook.cooking_name %></th>
     </tr>
-    <% @cooks.each do |cook| %>
     <tr>
-      <td><%= link_to cook.cooking_name, cook_path(cook.id) %></td>
-      <td><%= link_to cook.user.nickname, "/users/#{cook.user.nickname}" %></td>
-      <td><%= cook.description %></td>
+      <th>メモ</th>
+      <th> <%= @cook.description %></th>
     </tr>
-    <% end %>
+    <tr>
+      <%= link_to "編集", edit_cook_path(@cook.id) %>
+      <%= link_to "削除", cook_path(@cook.id), method: :delete, "data-confirm" => "削除します", class: "btn btn-sm btn-danger" %>
+    </tr>
   </table>
+<!--end-->

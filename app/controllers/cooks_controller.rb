@@ -4,6 +4,8 @@ class CooksController < ApplicationController
   end
 
   def show
+    @cook = Cook.find(params[:id])
+    @user = User.find(@cook.user_id)
   end
 
   def create
@@ -14,12 +16,25 @@ class CooksController < ApplicationController
   end
 
   def edit
+    @cook = Cook.find(params[:id])
+    if @cook.user_id == current_user.id
+      render :edit
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def update
+    cook = Cook.find(params[:id])
+    cook.update(cook_params)
+    redirect_to cook_path(cook.id)
   end
 
   def destroy
+    cook = Cook.find(params[:id])
+    cook.destroy
+    flash[:success] = "投稿が削除されました。"
+    redirect_to mypage_path
   end
 
   #投稿データのストロングパラメーター
