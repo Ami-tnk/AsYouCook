@@ -1,20 +1,8 @@
 <h1>マイページ</h1>
 
-  <table>
-    <tr>
-      <%= attachment_image_tag @user, :profile_image, size:"60x60", format: 'jpeg', class: "rounded-circle" %>
-    </tr>
-    <tr>
-      <th>name</th>
-      <th><%= @user.nickname %></th>
-    </tr>
-    <tr>
-      <th>Introduction</th>
-      <th> <%= @user.introduction %></th>
-    </tr>
-  </table>
-
-  <%= link_to '編集', user_nickname_edit_path(@user.nickname) %>
+<!--ユーザー情報-->
+  <%= render 'users/user_info', user: @user %>
+<!--end-->
 
 <!--料理新規投稿-->
  <%= render 'cooks/newform' %>
