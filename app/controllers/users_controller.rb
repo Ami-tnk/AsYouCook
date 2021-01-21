@@ -16,22 +16,27 @@ class UsersController < ApplicationController
   def edit
     @user = User.find_by(nickname: params[:nickname])
     if @user.nickname == current_user.nickname
-      render "edit"
+      render "edit"                           #ログインユーザーのみ編集画面に遷移できるよう設定
     else
-      redirect_to mypage_path
+      redirect_to mypage_path                 #ログインユーザーでなかったらmypageに遷移
     end
   end
 
   def update
-    @user = User.find(current_user.id)
-    @user.update(user_params)
+    user = User.find(current_user.id)
+    user.update(user_params)
     redirect_to mypage_path
   end
 
   def index
+    @users = User.all
   end
 
   def destroy
+    user = User.find(current_user.nickname)
+    user.destroy
+    flash[:success] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
   private
