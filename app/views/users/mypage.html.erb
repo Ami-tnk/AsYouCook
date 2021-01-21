@@ -1,12 +1,17 @@
-<h1>マイページ</h1>
+<h3 class="col-12">
+  <strong>マイページ</strong>
+</h3>
 
-<!--ユーザー情報-->
-  <%= render 'users/user_info', user: @user %>
-<!--end-->
-
-<!--料理新規投稿-->
- <%= render 'cooks/newform' %>
-<!--end-->
+<div class="col-3 my-3">
+  <!--ユーザー情報-->
+    <%= render 'users/user_info', user: @user %>
+  <!--end-->
+</div>
+<div class="col-9 my-3">
+  <!--料理新規投稿-->
+    <%= render 'cooks/newform' %>
+  <!--end-->
+</div>
 
 <!--自身が投稿した全ての料理-->
 <table class="table">
@@ -20,11 +25,12 @@
   <tr>
     <td>
       <%= link_to cook_path(cook.id) do %>
-      <%= attachment_image_tag cook, :image, size:"60x60", format: 'jpeg' %>
+      <%= attachment_image_tag cook, :image, size:"150x150", format: 'jpeg' %>
       <% end %>
     </td>
     <td><%= link_to cook.cooking_name, cook_path(cook.id) %></td>
-    <td><%= cook.description %></td>
+    <!--ユーザが入力フォームのテキストエリアで入力した改行が反映されるように設定-->
+    <td><%= simple_format(h(cook.description), {}, sanitize: false, wrapper_tag:"div") %></td>
     <td><%= cook.is_active %></td>
   </tr>
   <% end %>

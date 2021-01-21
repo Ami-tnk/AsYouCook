@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def mypage
     @cook = Cook.new
     @user = User.find(current_user.id)

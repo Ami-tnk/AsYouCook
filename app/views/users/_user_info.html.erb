@@ -1,18 +1,20 @@
-<h3>ユーザー情報</h3>
+<h4 class="row-12 text-center"><strong>ユーザー情報</strong></h4>
   <table>
-    <tr>
-      <%= attachment_image_tag @user, :profile_image, size:"60x60", format: 'jpeg', class: "rounded-circle" %>
+    <%= attachment_image_tag @user, :profile_image, size:"120x120", format: 'jpeg', class: "rounded-circle d-block mx-auto mt-3" %>
+    <tr class="row-12">
+      <th width="40%">name</td>
+      <td width="60%" class="text-center"><%= @user.nickname %></td>
     </tr>
-    <tr>
-      <th>name</th>
-      <th><%= @user.nickname %></th>
+    <tr class="row-12">
+      <th width="40%">Introduction</th>
     </tr>
-    <tr>
-      <th>Introduction</th>
-      <th> <%= @user.introduction %></th>
+    <tr class="row-12">
+      <td class="text-break text-center"> <%= @user.introduction %></td>
     </tr>
   </table>
 
 <% if user ==  current_user %>
-  <%= link_to '編集', user_nickname_edit_path(@user.nickname) %>
+  <div class="actions">
+    <%= link_to '編集', user_nickname_edit_path(@user.nickname), class: "btn btn-sm btn-outline-success mt-1 btn-block" %>
+  </div>
 <% end %>

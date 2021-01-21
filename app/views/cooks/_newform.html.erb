@@ -1,4 +1,7 @@
-<h3>投稿する</h3>
+<h4 class="row-12">
+  <strong>投稿する</strong>
+</h4>
+
 <%= form_with model: @cook, local:true do |f| %>
 
   <%= f.radio_button :is_active, :true %>
@@ -6,14 +9,22 @@
   <%= f.radio_button :is_active, :false %>
   <%= f.label :is_active, "非公開", {value: :false, style: "display: inline-block;"} %>
 
-  <h4>料理写真</h4>
+  <div class="field">
+    <%= f.label "料理写真" %><br />
     <%= f.attachment_field :image %>
+  </div>
 
-  <h4>料理名</h4>
-    <%= f.text_field :cooking_name %>
-  <h4>メモ</h4>
-    <%= f.text_area :description %>
-  <div>
-    <%= f.submit "保存" %>
+  <div class="field">
+    <%= f.label "料理名" %><br />
+    <%= f.text_field :cooking_name, autofocus: true, class: 'col-12' %>
+  </div>
+
+  <div class="field">
+    <%= f.label "料理メモ" %><br />
+    <%= f.text_area :description, autofocus: true, class: 'col-12' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存", class: "btn  btn-success col-8 mt-1 offset-2" %>
   </div>
 <% end %>

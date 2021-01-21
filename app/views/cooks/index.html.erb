@@ -1,15 +1,14 @@
-<h2>Cooks</h2>
-  <table class="table">
-    <tr>
-      <th>料理名</th>
-      <th>作成者</th>
-      <th>メモ</th>
-    </tr>
-    <% @cooks.each do |cook| %>
-    <tr>
-      <td><%= link_to cook.cooking_name, cook_path(cook.id) %></td>
-      <td><%= link_to cook.user.nickname, "/users/#{cook.user.nickname}" %></td>
-      <td><%= cook.description %></td>
-    </tr>
+<h3 class="col-12 my-3"><strong>皆んなの料理</strong></h3>
+
+<% @cooks.each do |cook| %>
+  <div class="col-3">
+    <%= link_to cook_path(cook.id) do %>
+      <%= attachment_image_tag cook, :image, size:"200x200", format: 'jpeg' %>
+      <p><%= link_to cook.cooking_name, cook_path(cook.id) %></p>
     <% end %>
-  </table>
+    <!--cook.descriptionは省略表示し、続きで詳細ページに遷移-->
+    <%= truncate(cook.description, length: 15) do %>
+      <p>(<%= link_to '続きを読む', cook_path(cook.id) %>)<p>
+    <% end %>
+  </div>
+<% end %>

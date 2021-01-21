@@ -1,15 +1,15 @@
 <h2>ユーザー一覧</h2>
-  <table class="table">
-    <tr>
-      <th></th>
-      <th>ユーザー名</th>
-      <th>自己紹介</th>
-    </tr>
-    <% @users.each do |user| %>
-    <tr>
-      <td><%= attachment_image_tag @user, :profile_image, size:"60x60", format: 'jpeg', class: "rounded-circle" %></td>
-      <td><%= link_to user.nickname, "/users/#{user.nickname}" %></td>
-      <td><%= link_to user.introduction %></td>
-    </tr>
-    <% end %>
-  </table>
+<table class="table">
+  <tr>
+    <th></th>
+    <th>ユーザー名</th>
+    <th>自己紹介</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= attachment_image_tag @user, :profile_image, size:"60x60", format: 'jpeg', class: "rounded-circle" %></td>
+    <td><%= link_to user.nickname, "/users/#{user.nickname}" %></td>
+    <td><%= link_to user.introduction %></td>
+  </tr>
+  <% end %>
+</table>
