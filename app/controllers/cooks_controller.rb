@@ -1,6 +1,6 @@
 class CooksController < ApplicationController
   def index
-    @cooks = Cook.where(is_active: "true") #公開中の料理のみ表示
+    @cooks = Cook.where(is_active: "true") # 公開中の料理のみ表示
   end
 
   def show
@@ -37,7 +37,7 @@ class CooksController < ApplicationController
     redirect_to mypage_path
   end
 
-  #投稿データのストロングパラメーター
+  # 投稿データのストロングパラメーター
   private
 
   def cook_params

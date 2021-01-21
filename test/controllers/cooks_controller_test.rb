@@ -30,5 +30,4 @@ class CooksControllerTest < ActionDispatch::IntegrationTest
     get cooks_destroy_url
     assert_response :success
   end
-
 end

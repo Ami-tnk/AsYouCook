@@ -27,5 +27,6 @@
 <% end %>
 
 <div>
-  <%= link_to "退会する", user_destroy_path(@user.nickname), method: :delete, "data-confirm" => "退会すると投稿した料理全てが削除されます。本当に退会しますか？", class: "btn btn-sm btn-danger" %>
+  <%= link_to "退会する", user_destroy_path(@user.nickname), method: :delete,
+      "data-confirm" => "退会すると投稿した料理全てが削除されます。本当に退会しますか？", class: "btn btn-sm btn-danger" %>
 </div>
