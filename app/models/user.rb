@@ -3,7 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
   attachment :profile_image
 
   has_many :cooks, dependent: :destroy
+
+  # nicknameは重複不可に設定
+  validates :nickname, presence: true, uniqueness: true
 end

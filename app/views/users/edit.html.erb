@@ -5,7 +5,8 @@
 
     <div class="field">
       <%= f.label :profile_image %><br />
-      <%= f.attachment_field :profile_image, class: 'mb-3' %>
+      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: 'mb-3'%>
+      <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
     </div>
 
     <div class="field">

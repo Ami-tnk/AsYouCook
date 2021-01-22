@@ -1,4 +1,5 @@
 class Cook < ApplicationRecord
-  belongs_to :user
   attachment :image
+  belongs_to :user
+  validates :image, presence: true
 end

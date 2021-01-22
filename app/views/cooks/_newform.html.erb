@@ -10,7 +10,7 @@
   <%= f.label :is_active, "非公開", {value: :false, style: "display: inline-block;"} %>
 
   <div class="field">
-    <%= f.label "料理写真" %><br />
+    <%= f.label "料理写真" %><span class="text-danger"> ＊必須</span><br />
     <%= f.attachment_field :image %>
   </div>
 

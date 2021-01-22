@@ -21,11 +21,10 @@ class UsersController < ApplicationController
   def edit
     # users/:nicknameでroutes作成しているためnicknameでUser検索
     @user = User.find_by(nickname: params[:nickname])
-    # ログインユーザーのみ編集画面に遷移できるよう設定
+    # ログインユーザーのみ編集画面に遷移できるよう設定, 他ユーザはmypageに遷移
     if @user.nickname == current_user.nickname
       render "edit"
     else
-    # ログインユーザーでなかったらmypageに遷移
       redirect_to mypage_path
     end
   end
@@ -33,8 +32,11 @@ class UsersController < ApplicationController
   def update
     # updateできるのはcurrent_userのみの仕様であるためidで特定
     user = User.find(current_user.id)
-    user.update(user_params)
-    redirect_to mypage_path
+    if user.update(user_params)
+      redirect_to mypage_path, notice:"アカウントを編集しました！"
+    else
+      redirect_back(fallback_location: root_path, alert: "編集できませんでした。もう一度行ってください。")
+    end
   end
 
   def index
@@ -44,8 +46,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find_by(nickname: params[:nickname])
     user.destroy
-    flash[:success] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-    redirect_to root_path
+    redirect_to root_path, notice:"ありがとうございました。またのご利用を心よりお待ちしております。"
   end
 
   private
