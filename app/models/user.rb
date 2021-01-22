@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :cooks, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   # nicknameは重複不可に設定
   validates :nickname, presence: true, uniqueness: true
