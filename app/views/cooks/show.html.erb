@@ -6,24 +6,50 @@
 
 
 <div class="col-9 my-3">
-<h3 class="col-12 ml-3">
-  <strong>料理詳細画面</strong>
-</h3>
- <!--料理詳細-->
- <table class="table">
-    <%= attachment_image_tag @cook, :image, :fill, 350, 350, format: 'jpeg', class: "d-block mx-auto mt-3" %>
+  <h3 class="col-12 ml-3">
+    <strong>料理詳細画面</strong>
+  </h3>
+   <!--料理詳細-->
+   <table class="table">
+      <%= attachment_image_tag @cook, :image, :fill, 350, 350, format: 'jpeg', class: "d-block mx-auto mt-3" %>
+      <div class="col-12">
+        <%= link_to "編集", edit_cook_path(@cook.id), class: "btn btn-sm btn-success mr-3 my-3 offset-10" %>
+        <%= link_to "削除", cook_path(@cook.id), method: :delete, "data-confirm" => "削除します", class: "btn btn-sm btn-danger my-3" %>
+      </div>
+      <tr>
+        <th width="20%">料理名</th>
+        <th width="80%"><%= @cook.cooking_name %></th>
+      </tr>
+      <tr class="pt-3">
+        <th width="20%">メモ</th>
+        <th width="80%"><%= simple_format(h(@cook.description), {}, sanitize: false, wrapper_tag:"div") %></th>
+      </tr>
+    </table>
+    <!--end-->
+
+    <!--コメント機能-->
     <div class="col-12">
-      <%= link_to "編集", edit_cook_path(@cook.id), class: "btn btn-sm btn-success mr-3 my-3 offset-10" %>
-      <%= link_to "削除", cook_path(@cook.id), method: :delete, "data-confirm" => "削除します", class: "btn btn-sm btn-danger my-3" %>
+      <p>コメント<%= @cook.post_comments.count%>件</p>
+
+      <% @cook.post_comments.each do |post_comment| %>
+      <table style="table-layout:fixed;width:100%;">
+        <tr>
+          <td style="width:20%;"><%= link_to post_comment.user.nickname, "/users/#{post_comment.user.nickname}" %><td>
+          <td style="word-wrap:break-word; width:60%;"><%= post_comment.comment %></td>
+          <td style="width:20%;">
+            <% if post_comment.user == current_user %>
+              <%= link_to "削除", cook_post_comment_path(post_comment.cook, post_comment), method: :delete, class:"btn btn-sm btn-outline-danger ml-2" %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <% end %>
     </div>
-    <tr>
-      <th width="20%">料理名</th>
-      <th width="80%"><%= @cook.cooking_name %></th>
-    </tr>
-    <tr class="pt-3">
-      <th width="20%">メモ</th>
-      <th width="80%"><%= simple_format(h(@cook.description), {}, sanitize: false, wrapper_tag:"div") %></th>
-    </tr>
-  </table>
-  <!--end-->
+    <div class="col-12">
+      <%= form_with(model:[@cook, @post_comment], local: true) do |f| %>
+        <%= f.text_area :comment, rows:2, placeholder: "コメントはこちらへ", class:"col-12" %>
+        <%= f.submit "コメントする", class:"btn btn-sm btn-outline-success" %>
+      <% end %>
+    </div>
+    <!--end-->
 </div>

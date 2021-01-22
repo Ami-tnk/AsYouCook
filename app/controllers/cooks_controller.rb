@@ -8,6 +8,7 @@ class CooksController < ApplicationController
   def show
     @cook = Cook.find(params[:id])
     @user = User.find(@cook.user_id)
+    @post_comment = PostComment.new
   end
 
   def create
