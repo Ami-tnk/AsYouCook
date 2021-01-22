@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     # updateできるのはcurrent_userのみの仕様であるためidで特定
     user = User.find(current_user.id)
     if user.update(user_params)
-      redirect_to mypage_path, notice:"アカウントを編集しました！"
+      redirect_to mypage_path, notice: "アカウントを編集しました！"
     else
       redirect_back(fallback_location: root_path, alert: "編集できませんでした。もう一度行ってください。")
     end
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find_by(nickname: params[:nickname])
     user.destroy
-    redirect_to root_path, notice:"ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path, notice: "ありがとうございました。またのご利用を心よりお待ちしております。"
   end
 
   private
