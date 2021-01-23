@@ -1,15 +1,15 @@
 class FavoritesController < ApplicationController
   def create
-    cook = Cook.find(params[:cook_id])
-    favorite = current_user.favorites.new(cook_id: cook.id)
+    @cook = Cook.find(params[:cook_id])
+    favorite = @cook.favorites.new(user_id: current_user.id)
     favorite.save
-    redirect_to cook_path(cook), notice: "いいねしました！"
+    # app/views/favorites/create.js.erbを参照する
   end
 
   def destroy
-    cook = Cook.find(params[:cook_id])
-    favorite = current_user.favorites.find_by(cook_id: cook.id)
+    @cook = Cook.find(params[:cook_id])
+    favorite = @cook.favorites.find_by(user_id: current_user.id)
     favorite.destroy
-    redirect_to cook_path(cook)
+    # app/views/favorites/destroy.js.erbを参照する
   end
 end

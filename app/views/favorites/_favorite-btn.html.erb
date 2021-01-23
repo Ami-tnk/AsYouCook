@@ -1,0 +1,13 @@
+<% if cook.favorited_by?(current_user) %>
+  <p>
+    <%= link_to cook_favorites_path(cook), method: :delete, remote: true do %>
+      <i class="fas fa-star"></i><%= cook.favorites.count %>
+    <% end %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to cook_favorites_path(cook), method: :post, remote: true do %>
+      <i class="far fa-star"></i><%= cook.favorites.count %>
+    <% end %>
+  </p>
+<% end %>
