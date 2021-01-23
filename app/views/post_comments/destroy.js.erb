@@ -1,0 +1,2 @@
+$("#cook_<%= @cook.id %> .comments-count").html("コメント<%= @cook.post_comments.count %>件");
+$("#cook_<%= @cook.id %> .post_comments").html("<%= j(render 'post_comments/comments_index', cook: @cook) %>");

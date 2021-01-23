@@ -1,0 +1,13 @@
+<% @cook.post_comments.each do |post_comment| %>
+  <table style="table-layout:fixed;width:100%;">
+    <tr>
+      <td style="width:20%;"><%= link_to post_comment.user.nickname, "/users/#{post_comment.user.nickname}" %><td>
+      <td style="word-wrap:break-word; width:60%;"><%= post_comment.comment %></td>
+      <td style="width:20%;">
+        <% if post_comment.user == current_user %>
+          <%= link_to "削除", cook_post_comment_path(post_comment.cook, post_comment), method: :delete, remote:true, class:'btn btn-sm btn-outline-danger' %>
+       <% end %>
+      </td>
+    </tr>
+  </table>
+<% end %>

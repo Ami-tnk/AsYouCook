@@ -35,25 +35,15 @@
     <!--end-->
 
     <!--コメント機能-->
-    <div class="col-12">
-      <p>コメント<%= @cook.post_comments.count%>件</p>
+    <div id="cook_<%= @cook.id %>">
+      <div class="comments-count col-12 my-1">コメント<%= @cook.post_comments.count%>件</div>
 
-      <% @cook.post_comments.each do |post_comment| %>
-      <table style="table-layout:fixed;width:100%;">
-        <tr>
-          <td style="width:20%;"><%= link_to post_comment.user.nickname, "/users/#{post_comment.user.nickname}" %><td>
-          <td style="word-wrap:break-word; width:60%;"><%= post_comment.comment %></td>
-          <td style="width:20%;">
-            <% if post_comment.user == current_user %>
-              <%= link_to "削除", cook_post_comment_path(post_comment.cook, post_comment), method: :delete, class:"btn btn-sm btn-outline-danger ml-2" %>
-            <% end %>
-          </td>
-        </tr>
-      </table>
-      <% end %>
+      <div class="post_comments col-12">
+        <%= render 'post_comments/comments_index', cook: @cook %>
+      </div>
     </div>
+
     <div class="col-12">
-      <!--非同期化-->
       <%= form_with model:[@cook, @post_comment] do |f| %>
         <%= f.text_area :comment, rows:2, placeholder: "コメントはこちらへ", class:"col-12" %>
         <%= f.submit "コメントする", class:"btn btn-sm btn-outline-success" %>
