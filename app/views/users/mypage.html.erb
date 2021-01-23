@@ -7,6 +7,7 @@
     <%= render 'users/user_info', user: @user %>
   <!--end-->
 </div>
+
 <div class="col-9 my-3">
   <!--料理新規投稿-->
     <%= render 'cooks/newform' %>
@@ -35,4 +36,16 @@
   </tr>
   <% end %>
 </table>
+<!--end-->
+
+<!-- お気に入りした料理-->
+<h5 class="col-12 mb-3"><strong>お気に入り料理一覧</strong></h5>
+<% @favorite_cooks.each do |cook| %>
+<div class="col-3">
+  <%= link_to cook_path(cook.id) do %>
+    <%= attachment_image_tag cook, :image, size:"200x200", format: 'jpeg' %>
+    <p><%= link_to cook.cooking_name, cook_path(cook.id) %></p>
+  <% end %>
+</div>
+<% end %>
 <!--end-->

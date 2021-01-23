@@ -20,8 +20,10 @@
       <!--end-->
 
       <div class="col-12">
-        <%= link_to "編集", edit_cook_path(@cook.id), class: "btn btn-sm btn-success mr-3 my-3 offset-10" %>
-        <%= link_to "削除", cook_path(@cook.id), method: :delete, "data-confirm" => "削除します", class: "btn btn-sm btn-danger my-3" %>
+        <% if @cook.user == current_user %>
+          <%= link_to "編集", edit_cook_path(@cook.id), class: "btn btn-sm btn-success mr-3 my-3 offset-10" %>
+          <%= link_to "削除", cook_path(@cook.id), method: :delete, "data-confirm" => "削除します", class: "btn btn-sm btn-danger my-3" %>
+        <% end %>
       </div>
       <tr>
         <th width="20%">料理名</th>

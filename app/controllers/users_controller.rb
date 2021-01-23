@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @cook = Cook.new
     @user = User.find(current_user.id)
     @cooks = @user.cooks.all
+    @favorite_cooks = @user.favorite_cooks
   end
 
   def show
