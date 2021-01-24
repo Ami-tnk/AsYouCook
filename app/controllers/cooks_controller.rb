@@ -2,7 +2,9 @@ class CooksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @cooks = Cook.where(is_active: "true") # 公開中の料理のみ表示
+    @cooks
+    @q = Cook.ransack(params[:q])
+    @cooks = @q.result(distinct: true)
   end
 
   def show

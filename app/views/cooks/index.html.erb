@@ -1,5 +1,17 @@
 <h3 class="col-12 my-3"><strong>皆んなの料理</strong></h3>
 
+
+<div class="col-12 my-3">
+  <dl class="searchbox">
+    <%= search_form_for @q do |f| %>
+    <dt><%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...' %></dt>
+    <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+    <% end %>
+  </dl>
+  <div><%= link_to "クリア", "/cooks", class: "btn btn-sm btn-outline-success" %></div>
+</div>
+
+
 <% @cooks.each do |cook| %>
   <div class="col-3">
     <%= link_to cook_path(cook.id) do %>
@@ -7,8 +19,8 @@
       <p><%= link_to cook.cooking_name, cook_path(cook.id) %></p>
     <% end %>
     <!--cook.descriptionは省略表示し、続きで詳細ページに遷移-->
-    <%= truncate(cook.description, length: 15) do %>
-      <p>(<%= link_to '続きを読む', cook_path(cook.id) %>)<p>
-    <% end %>
+    <!--<%= truncate(cook.description, length: 15) do %>-->
+    <!--  <p>(<%= link_to '続きを読む', cook_path(cook.id) %>)<p>-->
+    <!--<% end %>-->
   </div>
 <% end %>
