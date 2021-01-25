@@ -15,36 +15,33 @@
 </div>
 
 <!--自身が投稿した全ての料理-->
-<table class="table">
-  <tr>
-    <th></th>
-    <th>料理名</th>
-    <th>メモ</th>
-    <th>公開範囲</th>
-  </tr>
-  <% @cooks.each do |cook| %>
-  <tr>
-    <td>
-      <%= link_to cook_path(cook.id) do %>
-      <%= attachment_image_tag cook, :image, size:"150x150", format: 'jpeg' %>
-      <% end %>
-    </td>
-    <td><%= link_to cook.cooking_name, cook_path(cook.id) %></td>
-    <!--ユーザが入力フォームのテキストエリアで入力した改行が反映されるように設定-->
-    <td><%= simple_format(h(cook.description), {}, sanitize: false, wrapper_tag:"div") %></td>
-    <td><%= cook.is_active %></td>
-  </tr>
-  <% end %>
-</table>
+<h5 class="col-12 my-3"><strong>自分の料理一覧</strong></h5>
+<% @cooks.each do |cook| %>
+  <div class="col-3">
+    <%= link_to cook_path(cook.id) do %>
+      <%= attachment_image_tag cook, :image, size:"200x200", format: 'jpeg' %>
+      <p>
+        <%= truncate(cook.cooking_name, length: 10) %>
+        <span>
+          <% if (cook.is_active == true ) %>
+            (公開中)
+          <% else %>
+            (非公開)
+          <% end %>
+        </span>
+      </p>
+    <% end %>
+  </div>
+<% end %>
 <!--end-->
 
 <!-- お気に入りした料理-->
-<h5 class="col-12 mb-3"><strong>お気に入り料理一覧</strong></h5>
+<h5 class="col-12 my-3"><strong>お気に入り料理一覧</strong></h5>
 <% @favorite_cooks.each do |cook| %>
 <div class="col-3">
   <%= link_to cook_path(cook.id) do %>
     <%= attachment_image_tag cook, :image, size:"200x200", format: 'jpeg' %>
-    <p><%= link_to cook.cooking_name, cook_path(cook.id) %></p>
+    <p><%= truncate(cook.cooking_name, length: 10) %></p>
   <% end %>
 </div>
 <% end %>

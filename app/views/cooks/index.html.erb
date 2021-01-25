@@ -1,6 +1,6 @@
 <h3 class="col-12 my-3"><strong>皆んなの料理</strong></h3>
 
-
+<!--検索ボックス-->
 <div class="col-12 my-3">
   <dl class="searchbox">
     <%= search_form_for @q do |f| %>
@@ -10,7 +10,7 @@
   </dl>
   <div><%= link_to "クリア", "/cooks", class: "btn btn-sm btn-outline-success" %></div>
 </div>
-
+<!--end-->
 
 <% @cooks.each do |cook| %>
   <div class="col-3">

@@ -3,8 +3,10 @@ class CooksController < ApplicationController
 
   def index
     @cooks
+    # 検索オブジェクトを生成
     @q = Cook.ransack(params[:q])
-    @cooks = @q.result(distinct: true)
+    # 検索結果(公開中データを表示)
+    @cooks = @q.result(distinct: true).where(is_active: "true")
   end
 
   def show
