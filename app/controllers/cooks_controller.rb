@@ -21,7 +21,12 @@ class CooksController < ApplicationController
     if @cook.save
       redirect_to mypage_path, notice: "料理を投稿しました!"
     else
-      redirect_back(fallback_location: root_path, alert: "投稿に失敗しました。もう一度行ってください。")
+      @cook = Cook.new
+      @user = User.find(current_user.id)
+      @cooks = @user.cooks.all
+      @favorite_cooks = @user.favorite_cooks
+      flash.now[:alert] = "投稿に失敗しました。もう一度行ってください。"
+      render 'users/mypage'
     end
   end
 

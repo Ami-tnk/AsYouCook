@@ -4,7 +4,10 @@ class UsersController < ApplicationController
   def mypage
     @cook = Cook.new
     @user = User.find(current_user.id)
-    @cooks = @user.cooks.all
+    # 検索オブジェクトを生成
+    @q = @user.cooks.ransack(params[:q])
+    # 検索結果(公開中データを表示)
+    @cooks = @q.result(distinct: true)
     @favorite_cooks = @user.favorite_cooks
   end
 

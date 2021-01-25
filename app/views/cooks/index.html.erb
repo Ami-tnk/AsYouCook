@@ -2,13 +2,13 @@
 
 <!--検索ボックス-->
 <div class="col-12 my-3">
-  <dl class="searchbox">
+  <div class="searchbox">
     <%= search_form_for @q do |f| %>
-    <dt><%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...' %></dt>
-    <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+    <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...' %>
+    <%= f.submit ("検索") , class: 'btn btn-sm btn-outline-success' %>
+    <%= link_to "クリア", "/cooks", class: "btn btn-sm btn-outline-primary" %>
     <% end %>
-  </dl>
-  <div><%= link_to "クリア", "/cooks", class: "btn btn-sm btn-outline-success" %></div>
+  </div>
 </div>
 <!--end-->
 
@@ -16,7 +16,7 @@
   <div class="col-3">
     <%= link_to cook_path(cook.id) do %>
       <%= attachment_image_tag cook, :image, size:"200x200", format: 'jpeg' %>
-      <p><%= link_to cook.cooking_name, cook_path(cook.id) %></p>
+      <p><%= truncate(cook.cooking_name, length: 10) %></p>
     <% end %>
     <!--cook.descriptionは省略表示し、続きで詳細ページに遷移-->
     <!--<%= truncate(cook.description, length: 15) do %>-->
