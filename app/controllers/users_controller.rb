@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def destroy_all
-    #通知を全削除
+    # 通知を全削除
     @notifications = current_user.passive_notifications.destroy_all
     redirect_to mypage_path
   end

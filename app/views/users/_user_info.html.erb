@@ -3,7 +3,7 @@
     <%= attachment_image_tag @user, :profile_image, size:"120x120", format: 'jpeg', class: "rounded-circle d-block mx-auto mt-3" %>
     <tr class="row-12">
       <th width="40%">name</td>
-      <td width="60%" class="text-center"><%= @user.nickname %></td>
+      <td width="60%" class="text-center"><%= link_to @user.nickname, "/users/#{@user.nickname}" %></td>
     </tr>
     <tr class="row-12">
       <th width="40%">Introduction</th>

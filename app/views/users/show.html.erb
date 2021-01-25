@@ -1,23 +1,25 @@
-<h1>Users#show</h1>
-<!--ユーザー情報-->
-  <%= render 'users/user_info', user: @user %>
-<!--end-->
+<h3 class="col-12">
+  <strong><%= @user.nickname%>さんのページ</strong>
+</h3>
 
-<table class="table">
-  <tr>
-    <th></th>
-    <th>料理名</th>
-    <th>メモ</th>
-  </tr>
+<div class="col-3 my-3">
+  <!--ユーザー情報-->
+    <%= render 'users/user_info', user: @user %>
+  <!--end-->
+</div>
+
+<div class="col-9">
+  <h5 class="col-12 my-3"><strong><%= @user.nickname%>さんの料理一覧</strong></h5>
+  <div class="col-12 d-flex flex-wrap">
   <% @cooks.each do |cook| %>
-  <tr>
-    <td>
-      <%= link_to cook_path(cook.id) do %>
-      <%= attachment_image_tag cook, :image, size:"60x60", format: 'jpeg' %>
-      <% end %>
-    </td>
-    <td><%= link_to cook.cooking_name, cook_path(cook.id) %></td>
-    <td><%= cook.description %></td>
-  </tr>
+    <div class="col-3 mx-1">
+    <%= link_to cook_path(cook.id) do %>
+      <%= attachment_image_tag cook, :image, size:"200x200", format: 'jpeg' %>
+      <p>
+        <%= truncate(cook.cooking_name, length: 10) %>
+      </p>
+    <% end %>
+    </div>
   <% end %>
-</table>
+  </div>
+</div>

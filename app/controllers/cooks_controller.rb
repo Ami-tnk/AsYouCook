@@ -23,8 +23,11 @@ class CooksController < ApplicationController
     else
       @cook = Cook.new
       @user = User.find(current_user.id)
-      @cooks = @user.cooks.all
+      @q = @user.cooks.ransack(params[:q])
+      # 検索結果(公開中データを表示)
+      @cooks = @q.result(distinct: true)
       @favorite_cooks = @user.favorite_cooks
+      @notifications = current_user.passive_notifications
       flash.now[:alert] = "投稿に失敗しました。もう一度行ってください。"
       render 'users/mypage'
     end
