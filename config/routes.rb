@@ -14,4 +14,6 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end
+
+  delete 'notifications/destroy_all' => 'users#destroy_all', as: 'destroy_all_notification'
 end

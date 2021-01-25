@@ -4,6 +4,8 @@ class FavoritesController < ApplicationController
     favorite = @cook.favorites.new(user_id: current_user.id)
     favorite.save
     # app/views/favorites/create.js.erbを参照する
+    # cook.rbで定義した通知機能メソッド
+    @cook.create_notification_favorite!(current_user)
   end
 
   def destroy
