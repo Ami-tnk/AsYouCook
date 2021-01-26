@@ -19,7 +19,7 @@
   </head>
 
   <body>
-    <header>
+    <header class="bg-light border-bottom">
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to 'マイページ', mypage_path %>
@@ -45,5 +45,10 @@
           <%= yield %>
       </div>
     </main>
+    <footer class="shadow-sm mt-5">
+      <div class="container-fluid">
+        <p class="text-muted text-center" style="font-weight: bold;"> AsYouCook.</p>
+      </div>
+    </footer>
   </body>
 </html>
