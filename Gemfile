@@ -70,3 +70,7 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'rubocop-airbnb'
 gem 'rails-i18n'
 gem 'ransack'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
