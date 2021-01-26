@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @cooks = @q.result(distinct: true)
     @favorite_cooks = @user.favorite_cooks
 
-    @notifications = current_user.passive_notifications
+    @notifications = current_user.passive_notifications.order("created_at DESC")
   end
 
   def show
@@ -53,12 +53,6 @@ class UsersController < ApplicationController
     user = User.find_by(nickname: params[:nickname])
     user.destroy
     redirect_to root_path, notice: "ありがとうございました。またのご利用を心よりお待ちしております。"
-  end
-
-  def destroy_all
-    # 通知を全削除
-    @notifications = current_user.passive_notifications.destroy_all
-    redirect_to mypage_path
   end
 
   private
