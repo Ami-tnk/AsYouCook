@@ -19,7 +19,7 @@ class Cook < ApplicationRecord
     # すでに「いいね」されているか検索し、tempに一時的に保管
     temp = Notification.where([
       "visitor_id = ? and visited_id = ? and cook_id = ? and action = ? ",
-      current_user.id, user_id, id, 'favorite'
+      current_user.id, user_id, id, 'favorite',
     ])
     # 「いいね」されていない場合のみ、通知レコードを作成
     if temp.blank?
