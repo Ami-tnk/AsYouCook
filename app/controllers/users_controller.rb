@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     # 検索結果(公開中データを表示)
     @cooks = @q.result(distinct: true).page(params[:page])
     @favorite_cooks = @user.favorite_cooks
-
     @notifications = current_user.passive_notifications.order("created_at DESC")
   end
 

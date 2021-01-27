@@ -19,10 +19,16 @@
   </head>
 
   <body>
-    <header class="bg-light border-bottom">
+    <header class="bg-light border-bottom py-3">
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to 'マイページ', mypage_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'みんなの料理', cooks_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'トップページ', root_path %>
         </li>
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
@@ -43,6 +49,7 @@
         <!--end-->
         <div class="row justify-content-center my-5">
           <%= yield %>
+        </div>
       </div>
     </main>
     <footer class="shadow-sm mt-5">
