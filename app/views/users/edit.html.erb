@@ -1,11 +1,22 @@
 <div class="col-5">
   <h4 class="my-5 text-center"><strong>アカウント編集画面</strong></h4>
 
-  <%= form_with model: @user, url: '/users/:nickname', local:true do |f| %>
+  <%= form_with model: @user, url: '/users/:nickname', method: :patch, local:true do |f| %>
+    <!--エラーメッセージ-->
+    <% if @user.errors.any? %>
+      <div class="alert alert-danger">
+        <div><strong><%= pluralize(@user.errors.count, "error") %> prohibited this book from being saved:</strong></div>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <!--end-->
 
     <div class="field">
       <%= f.label :profile_image %><br />
-      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: 'mb-3'%>
       <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
     </div>
 

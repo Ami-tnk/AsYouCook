@@ -6,8 +6,9 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     # 検索オブジェクトを生成
     @q = @user.cooks.ransack(params[:q])
-    # 検索結果(公開中データを表示)
-    @cooks = @q.result(distinct: true).page(params[:page])
+    # 検索結果(公開中データを投稿が新しいものから表示)
+    @cooks = @q.result(distinct: true).order(created_at: "DESC").page(params[:page])
+
     @favorite_cooks = @user.favorite_cooks
     @notifications = current_user.passive_notifications.order("created_at DESC")
   end
@@ -27,20 +28,19 @@ class UsersController < ApplicationController
     # users/:nicknameでroutes作成しているためnicknameでUser検索
     @user = User.find_by(nickname: params[:nickname])
     # ログインユーザーのみ編集画面に遷移できるよう設定, 他ユーザはmypageに遷移
-    if @user.nickname == current_user.nickname
-      render "edit"
-    else
+    if @user.nickname != current_user.nickname
       redirect_to mypage_path
     end
   end
 
   def update
-    # updateできるのはcurrent_userのみの仕様であるためidで特定
-    user = User.find(current_user.id)
-    if user.update(user_params)
+    @user = current_user
+    if @user.update(user_params)
       redirect_to mypage_path, notice: "アカウントを編集しました！"
     else
-      redirect_back(fallback_location: root_path, alert: "編集できませんでした。もう一度行ってください。")
+      flash.now[:alert] = "編集できませんでした。もう一度行ってください。"
+      @user = User.find_by(nickname: current_user.nickname)
+      render "edit"
     end
   end
 
@@ -57,6 +57,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:nickname, :profile_image, :introduction)
+    params.require(:user).permit(:nickname, :email, :profile_image, :introduction)
   end
 end

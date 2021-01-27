@@ -17,4 +17,5 @@ class User < ApplicationRecord
 
   # nicknameは重複不可に設定
   validates :nickname, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 end
