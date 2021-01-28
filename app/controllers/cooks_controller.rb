@@ -28,7 +28,7 @@ class CooksController < ApplicationController
       @cooks = @q.result(distinct: true).order(created_at: "DESC").page(params[:page])
       @favorite_cooks = @user.favorite_cooks
       @notifications = current_user.passive_notifications
-      flash.now[:alert] = "投稿に失敗しました。もう一度行ってください。"
+      flash.now[:alert] = "投稿に失敗しました。料理写真は投稿が必須です。もう一度行ってください。"
       render 'users/mypage'
     end
   end

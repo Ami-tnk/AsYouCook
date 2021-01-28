@@ -28,19 +28,18 @@ class UsersController < ApplicationController
     # users/:nicknameでroutes作成しているためnicknameでUser検索
     @user = User.find_by(nickname: params[:nickname])
     # ログインユーザーのみ編集画面に遷移できるよう設定, 他ユーザはmypageに遷移
-    if @user.nickname != current_user.nickname
+    if @user != current_user
       redirect_to mypage_path
     end
   end
 
   def update
     @user = current_user
+    current_user_nickname = current_user.nickname
     if @user.update(user_params)
       redirect_to mypage_path, notice: "アカウントを編集しました！"
     else
-      flash.now[:alert] = "編集できませんでした。再度編集をお願いします。"
-      @user = User.find_by(nickname: current_user.nickname)
-      render "edit"
+      redirect_to "/users/#{current_user_nickname}/edit", flash: { errors: @user.errors, error_full_messages: @user.errors.full_messages }
     end
   end
 

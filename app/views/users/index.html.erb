@@ -1,17 +1,23 @@
-<div class="col-8">
-  <h4 class="my-5 text-center"><strong>ユーザー一覧</strong></h4>
-  <table class="table">
-    <tr>
-      <th></th>
-      <th>ユーザー名</th>
-      <th>自己紹介</th>
-    </tr>
-    <% @users.each do |user| %>
-    <tr>
-      <td><%= attachment_image_tag @user, :profile_image, size:"60x60", format: 'jpeg', class: "rounded-circle" %></td>
-      <td><%= link_to user.nickname, "/users/#{user.nickname}" %></td>
-      <td><%= link_to user.introduction %></td>
-    </tr>
-    <% end %>
-  </table>
+<div class="container">
+  <div class="row">
+    <div class="all_users col-8 offset-2 col-lg-10 offset-lg-1">
+      <h4 class="my-5 text-center"><strong>ユーザ一覧</strong></h4>
+      <table class="table">
+        <tr>
+          <th></th>
+          <th class="text-center">ユーザー名</th>
+          <th>自己紹介</th>
+          <th class="text-center">料理投稿件数</th>
+        </tr>
+        <% @users.each do |user| %>
+        <tr>
+          <td width="20%" class = "align-items-center"><%= attachment_image_tag @user, :profile_image, size:"50x50", fallback:"img/no_image.jpg", format: 'jpeg', class: "rounded-circle d-block mx-auto" %></td>
+          <td width="20%"  class = "align-middle text-center"><%= link_to user.nickname, "/users/#{user.nickname}" %></td>
+          <td width="40%"  class = "align-middle"><%= simple_format(h(user.introduction), {}, sanitize: false, wrapper_tag:"div") %></td>
+          <td width="20%"  class = "align-middle text-center"><%= user.cooks.count %>件</td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 </div>

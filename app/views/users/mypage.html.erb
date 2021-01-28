@@ -1,69 +1,75 @@
-<h3 class="col-12">
-  <strong>マイページ</strong>
-</h3>
+<div class="container">
+  <div class="row">
+    <div class="mypage col-10 offset-1 col-lg-10 offset-lg-1">
 
-<div class="col-9 my-3">
-  <!--通知情報-->
-    <%= render 'notifications/index', notifications: @notifications %>
-  <!--end-->
-</div>
+      <div>
+        <button id="notifications-btn" class="btn btn-outline-info col-6 col-lg-3 mt-3 mb-1"><i class="fa fa-paper-plane"></i>お知らせ</button>
+        <div class="notifications" class="mt-5">
+          <!--通知情報-->
+            <%= render 'notifications/index', notifications: @notifications %>
+          <!--end-->
+        </div>
+      </div>
 
-<div class="col-9 my-3 border border-light rounded">
-  <!--料理新規投稿-->
-    <%= render 'cooks/newform' %>
-  <!--end-->
-</div>
+      <div>
+        <button id="cook-newform-btn" class="btn btn-outline-success col-6 col-lg-3 my-2"><i class="fa fa-tags"></i>新規投稿</button>
+        <div class="cook-newform">
+          <!--料理新規投稿-->
+            <%= render 'cooks/newform' %>
+          <!--end-->
+        </div>
+      </div>
 
-<!--自身が投稿した全ての料理-->
-<div class="col-12" style="background:#fffff9;">
-<h5 class="col-12 my-3"><strong>自分の料理一覧</strong></h5>
-  <!--検索ボックス-->
-  <div class="searchbox col-12 mt-2 mb-3">
-    <%= search_form_for @q, url: mypage_path do |f| %>
-    <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...', class:"ml-5" %>
-    <%= f.submit ("検索") , class: 'btn btn-sm btn-outline-success'%>
-    <%= link_to "クリア", mypage_path, class: "btn btn-sm btn-outline-primary" %>
-    <% end %>
-　</div>
-  <!--end-->
-  <div class="row justify-content-center mx-5">
-  <!--検索結果＊検索かけていないときは全て出力-->
-    <% @cooks.each do |cook| %>
-    <div class="col-2">
-      <%= link_to cook_path(cook.id) do %>
-        <%= attachment_image_tag cook, :image, size: "150x150", format: 'jpeg' %>
-        <p>
-          <%= truncate(cook.cooking_name, length: 10) %>
-          <span>
-            <% if (cook.is_active == true ) %>
-              (公開)
-            <% else %>
-              (非公開)
+      <!--自身が投稿した全ての料理-->
+      <div class="col-12" style="background:#fffff9;">
+      <h5 class="col-12 my-3"><strong>自分の料理一覧</strong></h5>
+        <!--検索ボックス-->
+        <div class="searchbox col-12 mt-2 mb-3">
+          <%= search_form_for @q, url: mypage_path do |f| %>
+          <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...', class:"ml-5" %>
+          <%= f.submit ("検索") , class: 'btn btn-sm btn-outline-success'%>
+          <%= link_to "クリア", mypage_path, class: "btn btn-sm btn-outline-primary" %>
+          <% end %>
+      　</div>
+        <!--end-->
+        <div class="row justify-content-center mx-5">
+        <!--検索結果＊検索かけていないときは全て出力-->
+          <% @cooks.each do |cook| %>
+          <div class="col-2">
+            <%= link_to cook_path(cook.id) do %>
+              <%= attachment_image_tag cook, :image, size: "150x150", format: 'jpeg' %>
+              <p>
+                <%= truncate(cook.cooking_name, length: 10) %>
+                <span>
+                  <% if (cook.is_active == true ) %> (公開)
+                  <% else %> (非公開)
+                  <% end %>
+                </span>
+              </p>
             <% end %>
-          </span>
-        </p>
-      <% end %>
+          </div>
+          <% end %>
+          <div class="col-12"><%= paginate @cooks %></div>
+          <!--end-->
+        </div>
+      </div>
+      <!--end-->
+
+      <!-- お気に入りした料理-->
+      <div class="col-12 mt-2" style="background:#fffff9;">
+      <h5 class="col-12 my-3"><strong>お気に入り料理一覧</strong></h5>
+        <div class="row justify-content-center mx-5">
+          <% @favorite_cooks.each do |cook| %>
+          <div class="col-2">
+            <%= link_to cook_path(cook.id) do %>
+              <%= attachment_image_tag cook, :image, size: "150x150", format: 'jpeg' %>
+              <p><%= truncate(cook.cooking_name, length: 10) %></p>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <!--end-->
     </div>
-    <% end %>
-    <div class="col-12"><%= paginate @cooks %></div>
-    <!--end-->
   </div>
 </div>
-<!--end-->
-
-
-<!-- お気に入りした料理-->
-<div class="col-12 mt-2" style="background:#fffff9;">
-<h5 class="col-12 my-3"><strong>お気に入り料理一覧</strong></h5>
-  <div class="row justify-content-center mx-5">
-    <% @favorite_cooks.each do |cook| %>
-    <div class="col-2">
-      <%= link_to cook_path(cook.id) do %>
-        <%= attachment_image_tag cook, :image, size: "150x150", format: 'jpeg' %>
-        <p><%= truncate(cook.cooking_name, length: 10) %></p>
-      <% end %>
-    </div>
-    <% end %>
-  </div>
-</div>
-<!--end-->

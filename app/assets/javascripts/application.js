@@ -17,3 +17,15 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(function () {
+    $('#cook-newform-btn').click(function () {
+        $('.cook-newform').toggle();
+    });
+});
+
+$(function () {
+    $('#notifications-btn').click(function () {
+        $('.notifications').toggle();
+    });
+});

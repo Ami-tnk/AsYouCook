@@ -1,32 +1,36 @@
-<div class="col-5">
-  <h4 class="my-5 text-center"><strong>アカウントをお持ちの方</strong></h4>
-
-  <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'col-12 mb-3' %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password", class: 'col-12 mb-3' %>
-    </div>
-
-    <% if devise_mapping.rememberable? %>
-      <div class="field mt-3">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
-      </div>
-    <% end %>
-
-    <div class="actions">
-      <%= f.submit "ログインする", class: "btn  btn-info btn-block mt-3" %>
-    </div>
-  <% end %>
-
+<div class="container">
   <div class="row">
-    <div class="col-12 mt-5">
-      <p class="text-center"><%= link_to "新規アカウント作成はこちら", new_user_registration_path %></p>
+    <div class="session-new col-8 offset-2 col-lg-6 offset-lg-3">
+      <h4 class="my-5 text-center"><strong>アカウントをお持ちの方</strong></h4>
+
+      <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'col-12 mb-3' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password", class: 'col-12 mb-3' %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field mt-3">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit "ログインする", class: "btn  btn-info btn-block mt-3" %>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-12 mt-5">
+          <p class="text-center"><%= link_to "新規アカウント作成はこちら", new_user_registration_path %></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
