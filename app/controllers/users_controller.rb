@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to mypage_path, notice: "アカウントを編集しました！"
     else
-      flash.now[:alert] = "編集できませんでした。もう一度行ってください。"
+      flash.now[:alert] = "編集できませんでした。再度編集をお願いします。"
       @user = User.find_by(nickname: current_user.nickname)
       render "edit"
     end
