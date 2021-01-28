@@ -1,26 +1,45 @@
-<h3 class="col-12 my-3"><strong>みんなの料理</strong></h3>
+<div class="container">
+  <div class="row">
+    <div class="cooks-index col-12 col-lg-10 offset-lg-1">
+      <h4 class="my-5 text-center"><strong><strong>みんなの料理</strong></h4>
 
-<!--検索ボックス-->
-<div class="col-12 my-3">
-  <div class="searchbox">
-    <%= search_form_for @q do |f| %>
-    <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...' %>
-    <%= f.submit ("検索") , class: 'btn btn-sm btn-outline-success' %>
-    <%= link_to "クリア", "/cooks", class: "btn btn-sm btn-outline-primary" %>
-    <% end %>
+      <div class="col-12" style="background:#fbfaf5;">
+        <!--検索ボックス-->
+        <div class="searchbox col-12 my-3">
+          <%= search_form_for @q do |f| %>
+          <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...' %>
+          <%= f.submit ("検索") , class: 'btn btn-sm btn-outline-success' %>
+          <%= link_to "クリア", "/cooks", class: "btn btn-sm btn-outline-primary" %>
+          <% end %>
+        </div>
+        <!--end-->
+
+        <div class="users-cooks col-12 d-flex my-box-light flex-wrap">
+          <div class="d-flex my-box-light flex-wrap">
+          <% @cooks.each do |cook| %>
+          <table>
+            <tr>
+              <td>
+                <%= link_to cook_path(cook.id) do %>
+                  <%= attachment_image_tag cook, :image, size:"200x200", format: 'jpeg', class:"m-1 rounded" %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <%= link_to cook_path(cook.id) do %><%= truncate(cook.cooking_name, length: 10) %><% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              作成者 : <%= link_to "#{cook.user.nickname}", "users/#{cook.user.nickname}" %>さん
+              </td>
+            </tr>
+          </table>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<!--end-->
-
-<% @cooks.each do |cook| %>
-  <div class="col-3">
-    <%= link_to cook_path(cook.id) do %>
-      <%= attachment_image_tag cook, :image, size:"200x200", format: 'jpeg' %>
-      <p><%= truncate(cook.cooking_name, length: 10) %></p>
-    <% end %>
-    <!--cook.descriptionは省略表示し、続きで詳細ページに遷移-->
-    <!--<%= truncate(cook.description, length: 15) do %>-->
-    <!--  <p>(<%= link_to '続きを読む', cook_path(cook.id) %>)<p>-->
-    <!--<% end %>-->
-  </div>
-<% end %>
