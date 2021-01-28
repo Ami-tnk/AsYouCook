@@ -39,7 +39,8 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to mypage_path, notice: "アカウントを編集しました！"
     else
-      redirect_to "/users/#{current_user_nickname}/edit", flash: { errors: @user.errors, error_full_messages: @user.errors.full_messages }
+      redirect_to "/users/#{current_user_nickname}/edit", flash:
+        { errors: @user.errors, error_full_messages: @user.errors.full_messages }
     end
   end
 
