@@ -1,6 +1,6 @@
 <h4 class="row-12"><strong>ユーザー情報</strong></h4>
   <table>
-    <%= attachment_image_tag @user, :profile_image, size:"120x120", format: 'jpeg', class: "rounded-circle d-block mx-auto mt-3" %>
+    <%= attachment_image_tag @user, :profile_image, size:"120x120", format: 'jpeg', fallback:"no_image.jpg", class: "rounded-circle d-block mx-auto mt-3" %>
     <tr class="row-12">
       <th width="40%">name</td>
       <td width="60%" class="text-center"><%= link_to @user.nickname, "/users/#{@user.nickname}" %></td>

@@ -16,3 +16,18 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+.jumbotron-extend {
+  position: relative;
+  height: 40vh;
+  min-height: 80px;
+  background: url(img/top_image.jpg) no-repeat center center;
+  background-size: cover;
+  background-position: top;
+}
+
+.jumbotron-container {
+  position: relative;
+  top: 80%;
+  transform: translateY(-50%);
+}

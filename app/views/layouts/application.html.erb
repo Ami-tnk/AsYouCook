@@ -22,7 +22,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-warning py-3">
         <div class="container">
-          <a class="navbar-brand p-3" href="/"><span>AsYouCook</span></a>
+          <a class="navbar-brand p-3" href="/" style="font-size:30px;"><span><strong>AsYouCook</strong></span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon "></span>
           </button>
@@ -40,8 +40,8 @@
                 <%= link_to destroy_user_session_path,  class: "btn text-white", method: :delete do %><i class="fas fa-sign-out-alt text-white"></i><strong>ログアウト</strong><% end %>
               </li>
               <span>
-                <%= link_to user_nickname_edit_path(current_user.nickname),  class: "btn text-white" do %>
-                  <%= attachment_image_tag current_user, :profile_image, size:"50x50", format: 'jpeg', fallback:"no_image.jpg", class: "rounded-circle" %>
+                <%= link_to user_nickname_edit_path(current_user.nickname),  class: "btn text-white d-flex align-items-center justify-content-center" do %>
+                  <%= attachment_image_tag current_user, :profile_image, size:"50x50", format: 'jpeg', fallback:"img/no_image.jpg", class: "rounded-circle" %>
                 <% end %>
               </span>
             <% else %>
@@ -58,13 +58,10 @@
       </nav>
     </header>
     <main>
-      <div class="container">
         <!--フラッシュメッセージ-->
           <%= render 'layouts/flash_messages' %>
         <!--end-->
-        <div class="row justify-content-center my-5">
           <%= yield %>
-        </div>
       </div>
     </main>
     <footer class="shadow-sm mt-5">
