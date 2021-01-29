@@ -17,6 +17,7 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+// top画面
 .jumbotron-extend {
   position: relative;
   height: 40vh;
@@ -32,6 +33,7 @@
   transform: translateY(-50%);
 }
 
+// mypage画面
 .cook-newform {
   display: none;
   background: #f5fffa;
@@ -57,10 +59,10 @@
   justify-content: center;
 }
 
-/*ページネーション自体のデザイン*/
+// ページネーション自体のデザイン
 .pagination>li>a {
   border-radius: 20%;     /*角を丸くする*/
-  color: #696969;   /*文字の色を変える*/
+  color: #696969;        /*文字の色を変える*/
 }
 
 /* 表示しているページ番号のデザイン */
@@ -77,4 +79,12 @@
   background-color: #454545;
   color: #FFF;
   text-align: center;
+}
+
+// deviseのエラー表示デザイン
+#error_explanation {
+  padding: 3px;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  background-color: rgba(255,0,0,0.1); /*背景を透過させる*/
 }
