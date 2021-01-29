@@ -1,34 +1,30 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-lg-10 offset-lg-1">
-      <h4 class="col-12 mt-5">
-        <strong>料理詳細画面</strong>
-      </h4>
       <div class="card-list-containar">
-        <div class="card w-55 col-10 col-lg-10 mx-auto mt-4 shadow-lg">
-          <%= attachment_image_tag @cook, :image, format: 'jpeg', class: "card-img-top mt-3" %>
-          <div class="card-body">
+        <div class="card w-50 h-25 col-10 col-lg-10 mx-auto mt-4 shadow-lg">
+          <%= attachment_image_tag @cook, :image, format: 'jpeg', class: "card-img-top-show mt-3" %>
+          <!--いいね機能-->
+            <div id="cook_<%= @cook.id %>" style="font-size:15px;">
+              <div class="favorite-btn text-right col-12"><%= render "favorites/favorite-btn", cook: @cook %></div>
+            </div>
+          <!--end-->
+          <div class="card-body pt-0">
             <div class="row">
               <div class="col-12 col-lg-3">
                 <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "img/no_image.jpg", class:"mt-3 rounded-circle"; %>
               </div>
               <div class="col-12 col-lg-9">
-                <p class="card-title" style="font-size:25px;">
+                <p class="card-title " style="font-size:20px;">
                   <strong><i class="fas fa-utensils"></i><span> <%= @cook.cooking_name %></span></strong>
                 </p>
-                <p class="card-title" style="font-size:20px;">
+                <p class="card-title" style="font-size:15px;">
                   <strong><i class="far fa-edit"></i><span>料理メモ：<br>
                   <%= simple_format(h(@cook.description), {}, sanitize: false, wrapper_tag:"div") %></span></strong>
                 </p>
-                <p style="font-size:20px;">
+                <p style="font-size:15px;">
                   <span><i class="fas fa-user"></i> By <%= link_to @cook.user.nickname, "/users/#{@user.nickname}" %></span>
                 </p>
-                <p class="card-text" tyle="font-size:20px;">自己紹介：<%= @cook.user.introduction %></p>
-                <!--いいね機能-->
-                <div id="cook_<%= @cook.id %>" style="font-size:20px;">
-                  <div class="favorite-btn text-right col-12"><%= render "favorites/favorite-btn", cook: @cook %></div>
-                </div>
-                <!--end-->
               </div>
             </div>
           </div>
