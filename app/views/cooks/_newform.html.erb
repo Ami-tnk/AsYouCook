@@ -1,4 +1,5 @@
-<h4><strong>投稿する</strong></h4>
+<div class="newform col-10 offset-1">
+<h4 class="pt-3"><strong>投稿する</strong></h4>
 
 <%= form_with model: @cook, local:true do |f| %>
 
@@ -26,3 +27,4 @@
     <%= f.submit "保存", class: "btn  btn-success col-4 mt-1 offset-4" %>
   </div>
 <% end %>
+</div>

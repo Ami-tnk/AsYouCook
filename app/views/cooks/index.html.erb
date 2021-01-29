@@ -27,12 +27,12 @@
             </tr>
             <tr>
               <td>
-              <%= link_to cook_path(cook.id) do %><%= truncate(cook.cooking_name, length: 10) %><% end %>
+              <%= link_to cook_path(cook.id), style:"color:#8b0000;" do %><%= truncate(cook.cooking_name, length: 10) %><% end %>
               </td>
             </tr>
             <tr>
               <td>
-              作成者 : <%= link_to "#{cook.user.nickname}", "users/#{cook.user.nickname}" %>さん
+               <span class="text-secondary"><i class="fas fa-user text-secondary"></i> By <%= link_to cook.user.nickname, "/users/#{cook.user.nickname}", class:"text-secondary" %></span>
               </td>
             </tr>
           </table>

@@ -22,9 +22,9 @@
 
       <!--自身が投稿した全ての料理-->
       <div class="col-12" style="background:#fbfaf5;">
-      <h5 class="my-2 py-3"><strong>自分の料理一覧</strong></h5>
+      <h5 class="col-10 my-2 py-3"><strong>自分の料理一覧</strong></h5>
         <!--検索ボックス-->
-        <div class="searchbox">
+        <div class="searchbox col-10">
           <%= search_form_for @q, url: mypage_path do |f| %>
           <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...'%>
           <%= f.submit ("検索") , class: 'btn btn-sm btn-outline-success'%>
@@ -35,9 +35,9 @@
 
         <!--検索結果＊検索かけていないときは全て出力-->
         <div class="row">
-          <div class="d-flex my-box-light flex-wrap">
+          <div class="col-10 offset-1 pt-3 d-flex my-box-light flex-wrap">
           <% @cooks.each do |cook| %>
-            <%= link_to cook_path(cook.id) do %>
+            <%= link_to cook_path(cook.id), style:"color:#8b0000;" do %>
               <%= attachment_image_tag cook, :image, size: "150x150", format: 'jpeg', class:"m-1 rounded" %>
               <p>
                 <%= truncate(cook.cooking_name, length: 10) %>
@@ -55,12 +55,11 @@
       <!--end-->
 
       <!-- お気に入りした料理-->
-      <div class="col-12 mt-2" style="background:#fffff9;">
-        <h5 class="my-3 py-3"><strong>お気に入り料理一覧</strong></h5>
+      <h5 class="col-10 my-3"><strong>お気に入り料理一覧</strong></h5>
         <div class="row">
-          <div class="d-flex my-box-light flex-wrap">
+          <div class="col-10 offset-1 pt-3 d-flex my-box-light flex-wrap">
           <% @favorite_cooks.each do |cook| %>
-            <%= link_to cook_path(cook.id) do %>
+            <%= link_to cook_path(cook.id), style:"color:#8b0000;" do %>
               <%= attachment_image_tag cook, :image, size: "150x150", format: 'jpeg', class:"m-1 rounded" %>
               <div class="caption"><%= truncate(cook.cooking_name, length: 10) %></div>
             <% end %>

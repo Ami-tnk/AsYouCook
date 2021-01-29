@@ -18,14 +18,15 @@
 //= require turbolinks
 //= require_tree .
 
+
 $(function () {
-    $('#cook-newform-btn').click(function () {
-        $('.cook-newform').toggle();
+    $('#notifications-btn').click(function () {
+        $('.notifications').toggle();
     });
 });
 
 $(function () {
-    $('#notifications-btn').click(function () {
-        $('.notifictions').toggle();
+    $('#cook-newform-btn').click(function () {
+        $('.cook-newform').toggle();
     });
 });
