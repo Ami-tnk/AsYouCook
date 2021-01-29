@@ -22,7 +22,8 @@
   position: relative;
   height: 40vh;
   min-height: 400px;
-  background: url(img/top_image.jpg) no-repeat center center;
+  background-image: url(img/top_image.jpg);
+  background-repeat:no-repeat;
   background-size: cover;
   background-position: top;
 }

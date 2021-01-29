@@ -3,6 +3,7 @@
     <div class="user-edit col-8 offset-2 col-lg-6 offset-lg-3">
       <h4 class="my-5 text-center"><strong>アカウント編集画面</strong></h4>
 
+      <!--error_message-->
       <% if flash[:errors] %>
         <div class="alert alert-danger" role="alert">
         <div><strong>以下、<%= pluralize(flash[:errors].count, "件") %> のエラーをご確認ください:</strong></div>
@@ -13,6 +14,7 @@
         </ul>
         </div>
       <% end %>
+      <!--end-->
 
       <%= form_with model: @user, url: '/users/:nickname', method: :patch, local:true do |f| %>
         <div class="field">
