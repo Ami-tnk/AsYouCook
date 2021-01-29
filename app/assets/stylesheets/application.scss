@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
@@ -22,8 +23,8 @@
   position: relative;
   height: 40vh;
   min-height: 400px;
-  background-image: image-url(img/top_image.jpg);
-  background-repeat:no-repeat;
+  background-image: url(top_image.jpg); 
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
 }
