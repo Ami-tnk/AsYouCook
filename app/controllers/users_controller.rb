@@ -6,8 +6,8 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     # 検索オブジェクトを生成
     @q = @user.cooks.ransack(params[:q])
-    # 検索結果(公開中データを投稿が新しいものから表示)
-    @cooks = @q.result(distinct: true).order(created_at: "DESC").page(params[:page])
+    # 検索結果(公開中データを投稿(更新)が新しいものから表示)
+    @cooks = @q.result(distinct: true).order(updated_at: "DESC").page(params[:page])
 
     @favorite_cooks = @user.favorite_cooks
     @notifications = current_user.passive_notifications.order("created_at DESC")

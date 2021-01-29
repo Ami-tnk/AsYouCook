@@ -26,6 +26,6 @@ $(function () {
 
 $(function () {
     $('#notifications-btn').click(function () {
-        $('.notifications').toggle();
+        $('.notifictions').toggle();
     });
 });

@@ -3,9 +3,9 @@
     <div class="cooks-index col-12 col-lg-10 offset-lg-1">
       <h4 class="my-5 text-center"><strong><strong>みんなの料理</strong></h4>
 
-      <div class="col-12" style="background:#fbfaf5;">
+      <div class="col-12" style="background:#fffaf0;">
         <!--検索ボックス-->
-        <div class="searchbox col-12 my-3">
+        <div class="searchbox col-12 py-3">
           <%= search_form_for @q do |f| %>
           <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...' %>
           <%= f.submit ("検索") , class: 'btn btn-sm btn-outline-success' %>
@@ -38,6 +38,7 @@
           </table>
           <% end %>
           </div>
+          <div class="pagination col-12 mt-5 mb-3"><%= paginate @cooks %></div>
         </div>
       </div>
     </div>
