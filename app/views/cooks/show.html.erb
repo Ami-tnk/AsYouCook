@@ -5,15 +5,15 @@
         <strong>料理詳細画面</strong>
       </h4>
       <div class="card-list-containar">
-        <div class="card col-10 col-lg-10 mx-auto mt-4 shadow-lg">
-          <%= attachment_image_tag @cook, :image, :fill, 200, 100, format: 'jpeg', class: "card-img-top mt-3" %>
+        <div class="card w-55 col-10 col-lg-10 mx-auto mt-4 shadow-lg">
+          <%= attachment_image_tag @cook, :image, format: 'jpeg', class: "card-img-top mt-3" %>
           <div class="card-body">
             <div class="row">
-              <div class="col-12 col-lg-2">
-                <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "img/no_image.jpg", class:"mt-3 rounded-circle"; %>
+              <div class="col-12 col-lg-3">
+                <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "img/no_image.jpg", class:"mt-3 rounded-circle"; %>
               </div>
-              <div class="col-12 col-lg-10">
-                <p class="card-title" style="font-size:32px;">
+              <div class="col-12 col-lg-9">
+                <p class="card-title" style="font-size:25px;">
                   <strong><i class="fas fa-utensils"></i><span> <%= @cook.cooking_name %></span></strong>
                 </p>
                 <p class="card-title" style="font-size:20px;">

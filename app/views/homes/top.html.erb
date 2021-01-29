@@ -1,6 +1,33 @@
 <div class="jumbotron jumbotron-extend">
   <div class="container-fluid jumbotron-container">
-  <h1 class="text-white" style="font-size:70px;">AsYouCook</h1>
-  <p><a class="btn btn-success btn-lg" href="/users/sign_up" role="button">はじめてみる</a></p>
+    <h1 class="text-white" style="font-size:70px;">AsYouCook</h1>
+    <p><a class="btn btn-success btn-lg" href="/users/sign_up" role="button">はじめてみる</a></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-lg-8 offset-lg-2">
+  <h4 class="col-md-12 mt-2">
+    <strong>投稿されている新着料理</strong>
+  </h4>
+
+<div class="card-deck col-md-8 offset-2 col-lg-12">
+  <% @cooks.each do |cook| %>
+  <div class="card m-4 shadow-lg" style="width: 18rem;">
+    <%= attachment_image_tag cook, :image,:fill, 300, 200, class:"card-img-top"; %>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <p class="card-title">
+            <strong><i class="fas fa-utensils"></i><span> <%= cook.cooking_name %></span></strong>
+          </p>
+          <p class="card-text">
+            <span><i class="fas fa-user"></i> By <%= cook.user.nickname %></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
   </div>
 </div>

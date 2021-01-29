@@ -2,40 +2,39 @@
   <div class="row">
     <div class="mypage col-12 col-lg-10 offset-lg-1">
 
-      <div>
-        <button id="notifications-btn" class="btn btn-outline-info col-12 col-lg-3 mt-3 mb-1"><i class="fa fa-paper-plane"></i>お知らせ</button>
-        <div class="notifications" class="mt-5">
-          <!--通知情報-->
-            <%= render 'notifications/index', notifications: @notifications %>
-          <!--end-->
-        </div>
-      </div>
-
-      <div>
-        <button id="cook-newform-btn" class="btn btn-outline-success col-12 col-lg-3 my-2"><i class="fa fa-tags"></i>新規投稿</button>
-        <div class="cook-newform">
-          <!--料理新規投稿-->
-            <%= render 'cooks/newform' %>
-          <!--end-->
+      <div class="row">
+        <div class="col-12">
+          <button id="notifications-btn" class="btn btn-outline-info col-12 col-lg-1 offset-lg-9 my-3 mr-2"><i class="fa fa-paper-plane"></i></button>
+          <button id="cook-newform-btn" class="btn btn-outline-success col-12 col-lg-1  my-3"><i class="fa fa-tags"></i></button>
+          <div class="notifications" class="mt-5">
+            <!--通知情報-->
+              <%= render 'notifications/index', notifications: @notifications %>
+            <!--end-->
+          </div>
+          <div class="cook-newform mb-2">
+            <!--料理新規投稿-->
+              <%= render 'cooks/newform' %>
+            <!--end-->
+          </div>
         </div>
       </div>
 
       <!--自身が投稿した全ての料理-->
-      <div class="col-12" style="background:#fffff0">
-      <h5 class="col-10 my-2 py-3"><strong>自分の料理一覧</strong></h5>
+      <div class="col-12 border border-warning rounded">
+        <h5 class="row p-2 pl-3" style="background:#ffdead"><strong><i class="fas fa-utensils"></i> 料理一覧</strong></h5>
         <!--検索ボックス-->
-        <div class="searchbox col-10">
-          <%= search_form_for @q, url: mypage_path do |f| %>
-          <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...'%>
-          <%= f.submit ("検索") , class: 'btn btn-sm btn-outline-success'%>
-          <%= link_to "クリア", mypage_path, class: "btn btn-sm btn-outline-primary" %>
+        <div class="searchbox row mt-2 pl-3">
+          <%= search_form_for @q, url: mypage_path, class:"col-12 mt-2" do |f| %>
+          <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...', class:"mt-2" %>
+          <%= f.submit ("検索") , class: "btn btn-sm btn-outline-success col-12 col-lg-2 mt-1" %>
+          <%= link_to "クリア", mypage_path, class: "btn btn-sm btn-outline-primary col-12 col-lg-2 mt-1" %>
           <% end %>
       　</div>
         <!--end-->
 
         <!--検索結果＊検索かけていないときは全て出力-->
-        <div class="row">
-          <div class="col-10 offset-1 pt-3 d-flex my-box-light flex-wrap">
+        <div class="row align-items-center">
+          <div class="col-10 offset-1 pt-3 d-flex flex-wrap justify-content-center">
           <% @cooks.each do |cook| %>
             <%= link_to cook_path(cook.id), style:"color:#8b0000;" do %>
               <%= attachment_image_tag cook, :image, size: "150x150", format: 'jpeg', class:"m-1 rounded" %>
@@ -55,9 +54,9 @@
       <!--end-->
 
       <!-- お気に入りした料理-->
-      <h5 class="col-10 my-3"><strong>お気に入り料理一覧</strong></h5>
+      <h5 class="row p-2 pl-3" my-3 style="background:#ffffc6"><strong><i class="fas fa-star"></i> お気に入り料理一覧</strong></h5>
         <div class="row">
-          <div class="col-10 offset-1 pt-3 d-flex my-box-light flex-wrap">
+          <div class="col-10 offset-1 pt-3 d-flex flex-wrap justify-content-center">
           <% @favorite_cooks.each do |cook| %>
             <%= link_to cook_path(cook.id), style:"color:#8b0000;" do %>
               <%= attachment_image_tag cook, :image, size: "150x150", format: 'jpeg', class:"m-1 rounded" %>

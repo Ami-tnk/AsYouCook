@@ -1,33 +1,40 @@
-<h4 class="col-8 my-5">
-  <strong>料理編集</strong>
-</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-10 offset-lg-1">
+      <h4 class="col-12 mt-5">
+        <strong>料理編集</strong>
+      </h4>
 
-<div class="col-8">
-<%= form_with model: @cook, local:true do |f| %>
+      <div class="col-12">
+      <%= form_with model: @cook, local:true do |f| %>
 
-  <%= f.radio_button :is_active, :true %>
-  <%= f.label :is_active, "公開", {value: :true, style: "display: inline-block;"} %>
-  <%= f.radio_button :is_active, :false %>
-  <%= f.label :is_active, "非公開", {value: :false, style: "display: inline-block;"} %>
+        <%= f.radio_button :is_active, :true %>
+        <%= f.label :is_active, "公開", {value: :true, style: "display: inline-block;"} %>
+        <%= f.radio_button :is_active, :false %>
+        <%= f.label :is_active, "非公開", {value: :false, style: "display: inline-block;"} %>
 
-  <div class="field">
-    <%= f.label "料理写真", class: 'mt-3' %><span class="text-danger"> ＊必須</span><br />
-    <%= f.attachment_field :image, class: 'mb-3' %>
+        <div class="field">
+          <%= f.label "料理写真", class: 'mt-3' %><span class="text-danger"> ＊必須</span><br />
+          <%= f.attachment_field :image, class: 'mb-3' %>
+        </div>
+
+        <div class="field">
+          <%= f.label "料理名" %><br />
+          <%= f.text_field :cooking_name, autofocus: true, class: 'col-12 mb-3' %>
+        </div>
+
+        <div class="field">
+          <%= f.label "料理メモ" %><br />
+          <%= f.text_area :description, autofocus: true, class: 'col-12 mb-3' %>
+        </div>
+
+        <div class="actions">
+          <%= link_to "戻る", cook_path(@cook.id), class: "btn  btn-outline-primary col-8 offset-2 col-lg-2 offset-lg-1 mt-1" %>
+          <%= f.submit "保存", class: "btn  btn-success col-8 offset-2 col-lg-6 mt-1" %>
+        </div>
+      <% end %>
+      </div>
+
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label "料理名" %><br />
-    <%= f.text_field :cooking_name, autofocus: true, class: 'col-12 mb-3' %>
-  </div>
-
-  <div class="field">
-    <%= f.label "料理メモ" %><br />
-    <%= f.text_area :description, autofocus: true, class: 'col-12 mb-3' %>
-  </div>
-
-  <div class="actions">
-    <%= link_to "戻る", cook_path(@cook.id), class: "btn  btn-outline-primary col-1 mt-1" %>
-    <%= f.submit "保存", class: "btn  btn-success col-8 mt-1 offset-1" %>
-  </div>
-<% end %>
 </div>

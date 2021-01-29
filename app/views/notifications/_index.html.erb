@@ -1,18 +1,20 @@
-<h4 class="row-12 my-1">
-  <strong>お知らせ</strong>
-</h4>
+<div class="newform col-10 offset-1">
+  <h4 class="row-12 my-1">
+    <strong>お知らせ</strong>
+  </h4>
 
-<!--削除ボックス-->
-<%= link_to destroy_all_notification_path, method: :delete do %>
-  <i class="fas fa-trash" style="color: black;"></i>
-  <h7 style="color: black;">全削除</h7>
-<% end %>
-<!--end-->
+  <!--削除ボックス-->
+  <%= link_to destroy_all_notification_path, method: :delete do %>
+    <i class="fas fa-trash" style="color: black;"></i>
+    <h7 style="color: black;">全削除</h7>
+  <% end %>
+  <!--end-->
 
-<!--自分が行なったいいねは自分に通知されないよう設定-->
-<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
-<% if notifications.exists? %>
-  <%= render @notifications %>
-<% else %>
-  <p>通知はありません</p>
-<% end %>
+  <!--自分が行なったいいねは自分に通知されないよう設定-->
+  <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+  <% if notifications.exists? %>
+    <%= render @notifications %>
+  <% else %>
+    <p>通知はありません</p>
+  <% end %>
+</div>

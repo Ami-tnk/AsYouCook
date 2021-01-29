@@ -6,7 +6,7 @@ class CooksController < ApplicationController
     # 検索オブジェクトを生成
     @q = Cook.ransack(params[:q])
     # 検索結果(公開中データを表示)
-    @cooks = @q.result(distinct: true).where(is_active: "true").page(params[:page])
+    @cooks = @q.result(distinct: true).where(is_active: "true").order(updated_at: "DESC").page(params[:page])
   end
 
   def show
