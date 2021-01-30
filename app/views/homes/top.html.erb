@@ -6,18 +6,18 @@
 </div>
 
 <div class="row">
-  <div class="col-12 col-lg-10 offset-lg-1">
-  <h4 class="col-12 mt-2">
+  <div class="col-12 col-md-12 col-lg-10 offset-lg-1">
+  <h4 class="col-12 col-md-12 mt-2">
     <strong>投稿されている新着料理</strong>
   </h4>
 
-<div class="card-deck col-lg-12 col-10 offset-1 pt-3 d-flex flex-wrap justify-content-center">
+<div class="card-deck col-lg-12 pt-3 d-flex flex-wrap justify-content-center">
   <% @cooks.each do |cook| %>
-  <div class="card m-4 shadow-lg" style="width: 18rem;">
+  <div class="card m-4 shadow-lg" style="width: 13rem;">
     <%= attachment_image_tag cook, :image, :fill, 300, 200, class:"card-img-top"; %>
     <div class="card-body">
       <div class="row">
-        <div class="col-12 col-lg-12">
+        <div class="col-12 col-md-12 col-lg-12">
           <p class="card-title">
             <strong><i class="fas fa-utensils"></i><span> <%= cook.cooking_name %></span></strong>
           </p>
