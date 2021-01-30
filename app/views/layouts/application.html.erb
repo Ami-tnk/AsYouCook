@@ -41,7 +41,7 @@
               </li>
               <span>
                 <%= link_to user_nickname_edit_path(current_user.nickname), class: "btn text-white d-flex align-items-center justify-content-center" do %>
-                  <%= attachment_image_tag current_user, :profile_image, size:"50x50", format: 'jpeg', fallback:"img/no_image.jpg", class: "rounded-circle" %>
+                  <%= attachment_image_tag current_user, :profile_image, size:"50x50", format: 'jpeg', fallback:"no_image.jpg", class: "rounded-circle" %>
                 <% end %>
               </span>
             <% else %>

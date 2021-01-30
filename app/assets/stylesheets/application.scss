@@ -103,3 +103,23 @@
   width: 100%;
   object-fit: cover;
 }
+
+
+// 767px以下用（タブレット／スマートフォン用）
+@media screen and (max-width: 767px) {
+  #cook_show_user_image {
+    display: none;
+  }
+
+  .w-50 {
+    width: 75% !important;
+  }
+
+  .card-img-top-show {
+    height: 40vw;
+  }
+
+  .card-title {
+    font-size: 12px;
+  }
+}
