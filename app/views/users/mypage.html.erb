@@ -4,9 +4,15 @@
 
       <div class="row">
         <div class="col-12">
-          <button id="notifications-btn" class="btn btn-outline-info col-12 col-lg-1 offset-lg-9 my-3 mr-2"><i class="fa fa-paper-plane"></i></button>
-          <button id="cook-newform-btn" class="btn btn-outline-success col-12 col-lg-1  my-3"><i class="fa fa-tags"></i></button>
-          <div class="notifications" class="mt-5">
+          <button id="notifications-btn" class="btn btn-outline-info col-12 col-lg-2 offset-lg-7 my-2 mr-2">
+            <i class="fa fa-paper-plane"></i>
+            <!--もし未確認の通知があれば表示→投稿先まで行くと確認済みになる-->
+            <% if @unchecked_notifications.exists? %>
+              <i class="fas fa-user-plus"></i><span class="mr-2"><%= @unchecked_notifications.count %></span>
+            <% end %>
+          </button>
+          <button id="cook-newform-btn" class="btn btn-outline-success col-12 col-lg-2 my-2"><i class="fa fa-tags"></i></button>
+          <div class="notifications mb-2">
             <!--通知情報-->
               <%= render 'notifications/index', notifications: @notifications %>
             <!--end-->
