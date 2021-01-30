@@ -9,7 +9,7 @@
   <%= f.label :is_active, "非公開", {value: :false, style: "display: inline-block;"} %>
 
   <div class="field　cook-image">
-    <%= f.label "料理写真" %><span class="text-danger"> ＊必須</span><br />
+    <%= f.label "料理写真" %><br />
     <%= f.attachment_field :image, placeholder: "画像" %>
   </div>
 
@@ -19,7 +19,7 @@
   </div>
 
   <div class="field">
-    <%= f.label "料理メモ" %><br />
+    <%= f.label "レシピ" %><br />
     <%= f.text_area :description, autofocus: true, class: 'col-12' %>
   </div>
 

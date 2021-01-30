@@ -1,20 +1,19 @@
+<!--error_message-->
+  <% if flash[:errors] %>
+  <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>以下、<%= pluralize(flash[:errors].count, "件") %> のエラーをご確認ください:</strong><br>
+    <% flash[:error_full_messages].each do |message| %>
+      ・<%= message %><br>
+    <% end %>
+  </div>
+  <% end %>
+<!--end-->
+
 <div class="container">
   <div class="row">
     <div class="user-edit col-8 offset-2 col-lg-6 offset-lg-3">
       <h4 class="my-5 text-center"><strong>アカウント編集画面</strong></h4>
-
-      <!--error_message-->
-      <% if flash[:errors] %>
-        <div class="alert alert-danger" role="alert">
-        <div><strong>以下、<%= pluralize(flash[:errors].count, "件") %> のエラーをご確認ください:</strong></div>
-        <ul>
-        <% flash[:error_full_messages].each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-        </ul>
-        </div>
-      <% end %>
-      <!--end-->
 
       <%= form_with model: @user, url: '/users/:nickname', method: :patch, local:true do |f| %>
         <div class="field">

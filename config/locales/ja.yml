@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    attributes:
+      cook:
+        cooking_name: 料理名
+        image: 料理写真
+        description: レシピ
+      post_comment:
+        comment: コメント
+      user:
+        email: メールアドレス
+        nickname: ニックネーム
+        introduction: 自己紹介
+        profile_image: 画像
+  views:
+    pagination:
+      first: 最初
+      last: 最後
+      previous: 前
+      next: 次

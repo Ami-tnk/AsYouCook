@@ -1,3 +1,15 @@
+<!--error_message-->
+  <% if flash[:errors] %>
+  <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>以下、<%= pluralize(flash[:errors].count, "件") %> のエラーをご確認ください:</strong><br>
+    <% flash[:error_full_messages].each do |message| %>
+      ・<%= message %><br>
+    <% end %>
+  </div>
+  <% end %>
+<!--end-->
+
 <div class="container">
   <div class="row">
     <div class="mypage col-12 col-lg-10 offset-lg-1">
@@ -11,12 +23,12 @@
               <i class="fas fa-user-plus"></i><span class="mr-2"><%= @unchecked_notifications.count %></span>
             <% end %>
           </button>
-          <button id="cook-newform-btn" class="btn btn-outline-success col-12 col-lg-2 my-2"><i class="fa fa-tags"></i></button>
           <div class="notifications mb-2">
             <!--通知情報-->
               <%= render 'notifications/index', notifications: @notifications %>
             <!--end-->
           </div>
+          <button id="cook-newform-btn" class="btn btn-outline-success col-12 col-lg-2 my-2"><i class="fa fa-tags"></i></button>
           <div class="cook-newform mb-2">
             <!--料理新規投稿-->
               <%= render 'cooks/newform' %>
