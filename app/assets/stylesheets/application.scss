@@ -23,7 +23,7 @@
   position: relative;
   height: 40vh;
   min-height: 400px;
-  background-image: url(top_image.jpg); 
+  background-image: url(top_image.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
@@ -63,18 +63,20 @@
 
 // ページネーション自体のデザイン
 .pagination>li>a {
-  border-radius: 20%;     /*角を丸くする*/
-  color: #696969;        /*文字の色を変える*/
+  border: none;           /*枠線をなくす*/
+  color: #ec6800;         /*文字色を変える*/
+  font-weight: bold;      /*文字の太さを変える*/
 }
 
 /* 表示しているページ番号のデザイン */
 .pagination>.active>a {
-  border-radius: 50%;     /*角を丸くする*/
+  background: #fcd575;    /*背景の色を変える*/
+  border-radius: 15px;    /*角を丸くする*/
 }
 
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {
-  border-radius: 50%;    /*角を丸くする*/
+  border-radius: 15px;    /*角を丸くする*/
 }
 
 .footer {

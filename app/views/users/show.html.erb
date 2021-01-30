@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-lg-10 offset-1">
+    <div class="col-12 col-lg-10 offset-lg-1">
 
       <!--ユーザー情報-->
-      <div class="col-12 my-3">
+      <div class="col-12 my-3 justify-content-center">
         <%= render 'users/user_info', user: @user %>
       </div>
       <!--end-->
 
       <!--ユーザー投稿料理-->
       <div class="col-12 m-2" style="background:#fffff9;">
-        <h5 class="col-10 offset-1 pt-3"><strong><%= @user.nickname%>さんの料理一覧</strong></h5>
+        <h5 class="col-12 pt-3"><strong><%= @user.nickname%>さんの料理一覧</strong></h5>
         <div class="row">
           <div class="d-flex my-box-light flex-wrap col-10 offset-1">
           <% @cooks.each do |cook| %>
