@@ -53,7 +53,7 @@ class CooksController < ApplicationController
   def update
     @cook = Cook.find(params[:id])
     if @cook.update(cook_params)
-      redirect_to cook_path(cook.id), notice: "料理を編集しました!"
+      redirect_to cook_path(@cook.id), notice: "料理を編集しました!"
     else
       render 'edit'
     end
@@ -69,6 +69,6 @@ class CooksController < ApplicationController
   private
 
   def cook_params
-    params.require(:cook).permit(:cooking_name, :image, :description, :is_active)
+    params.require(:cook).permit(:cooking_name, :image, :recipe, :is_active)
   end
 end
