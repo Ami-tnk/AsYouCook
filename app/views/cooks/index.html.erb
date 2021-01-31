@@ -8,16 +8,16 @@
         <div class="col-12">
           <!--検索ボックス-->
            <div class="searchbox row mt-2 pl-3">
-            <%= search_form_for @q, url: mypage_path, class:"col-12 mt-2" do |f| %>
+            <%= search_form_for @q, url: cooks_path, class:"col-12 mt-2" do |f| %>
             <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...', class:"mt-2" %>
             <%= f.submit ("検索") , class: "btn btn-sm btn-outline-success col-12 col-lg-2 mt-1" %>
-            <%= link_to "クリア", mypage_path, class: "btn btn-sm btn-outline-primary col-12 col-lg-2 mt-1" %>
+            <%= link_to "クリア", cooks_path, class: "btn btn-sm btn-outline-primary col-12 col-lg-2 mt-1" %>
             <% end %>
         　</div>
         <!--end-->
           <!--end-->
 
-          <div class="users-cooks col-12 d-flex flex-wrap">
+          <div class="users-cooks col-12 p-0 d-flex flex-wrap">
             <div class="d-flex my-box-light flex-wrap justify-content-center">
             <% @cooks.each do |cook| %>
             <table>
@@ -30,7 +30,7 @@
               </tr>
               <tr>
                 <td>
-                <%= link_to cook_path(cook.id), style:"color:#8b0000;" do %><%= truncate(cook.cooking_name, length: 10) %><% end %>
+                <%= link_to cook_path(cook.id), style:"color:#8b0000;" do %><%= truncate(cook.cooking_name, length: 7) %><% end %>
                 </td>
               </tr>
               <tr>

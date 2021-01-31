@@ -45,10 +45,16 @@
                 <% end %>
               </span>
             <% else %>
-              <li class="nav-item align-center">
+              <li class="nav-item d-flex align-items-center justify-content-center">
+                <%= link_to root_path, class: "btn text-white" do %><i class="fas fa-home"></i><strong>トップページ</strong><% end %>
+              </li>
+              <li class="nav-item d-flex align-items-center justify-content-center">
+                <%= link_to cooks_path, class: "btn text-white" do %><i class="fas fa-utensils"></i><strong>みんなの料理</strong><% end %>
+              </li>
+              <li class="nav-item d-flex align-items-center justify-content-center">
                 <%= link_to new_user_registration_path, class: "btn text-white" do %><i class="fas fa-user-plus text-white"></i><strong>新規登録</strong><% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item d-flex align-items-center justify-content-center">
                 <%= link_to new_user_session_path, class: "btn text-white" do %><i class="fas fa-sign-in-alt text-white"></i><strong>ログイン</strong><% end %>
               </li>
             <% end %>

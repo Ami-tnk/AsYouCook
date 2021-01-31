@@ -107,6 +107,7 @@
 
 // 767px以下用（タブレット／スマートフォン用）
 @media screen and (max-width: 767px) {
+  // 料理詳細画面
   #cook_show_user_image {
     display: none;
   }
@@ -121,5 +122,10 @@
 
   .card-title {
     font-size: 12px;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
   }
 }
