@@ -78,7 +78,7 @@
           <% @favorite_cooks.each do |cook| %>
             <%= link_to cook_path(cook.id), style:"color:#8b0000;" do %>
               <%= attachment_image_tag cook, :image, size: "150x150", format: 'jpeg', class:"m-1 rounded" %>
-              <div class="caption"><%= truncate(cook.cooking_name, length: 10) %></div>
+              <div class="caption"><%= truncate(cook.cooking_name, length: 7) %></div>
             <% end %>
           <% end %>
           </div>
