@@ -1,3 +1,17 @@
+<!--エラーメッセージ-->
+<% if @cook.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p><strong>以下、<%= pluralize(@cook.errors.count, "件") %> のエラーをご確認ください:</strong></p>
+    <ul>
+      <% @cook.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<!--end-->
+
 <div class="container">
   <div class="row">
     <div class="col-12 col-lg-10 offset-lg-1">

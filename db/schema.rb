@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_061414) do
+ActiveRecord::Schema.define(version: 2021_01_31_064508) do
 
   create_table "cooks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "cooking_name", null: false
-    t.string "image_id"
-    t.text "recipe"
+    t.string "image_id", null: false
+    t.text "recipe", null: false
     t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_01_31_061414) do
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.text "comment"
+    t.text "comment", null: false
     t.integer "user_id"
     t.integer "cook_id"
     t.datetime "created_at", null: false

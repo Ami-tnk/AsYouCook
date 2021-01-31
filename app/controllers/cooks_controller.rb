@@ -51,11 +51,11 @@ class CooksController < ApplicationController
   end
 
   def update
-    cook = Cook.find(params[:id])
-    if cook.update(cook_params)
+    @cook = Cook.find(params[:id])
+    if @cook.update(cook_params)
       redirect_to cook_path(cook.id), notice: "料理を編集しました!"
     else
-      redirect_back(fallback_location: root_path, alert: "投稿に失敗しました。もう一度行ってください。")
+      render 'edit'
     end
   end
 
