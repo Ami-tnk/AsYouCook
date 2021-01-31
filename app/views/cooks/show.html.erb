@@ -21,8 +21,8 @@
                   <strong><i class="fas fa-utensils"></i><span> <%= @cook.cooking_name %></span></strong>
                 </p>
                 <p class="card-title">
-                  <strong><i class="far fa-edit"></i><span>料理メモ：</strong></span><br>
-                  <%= simple_format(h(@cook.description), {}, sanitize: false, wrapper_tag:"div", class:"cook_show_description") %>
+                  <strong><i class="far fa-edit"></i><span>レシピ：</strong></span><br>
+                  <%= simple_format(h(@cook.recipe), {}, sanitize: false, wrapper_tag:"div", class:"cook_show_description") %>
                 </p>
                 <p class="card-title">
                   <span><i class="fas fa-user"></i> By <%= link_to @cook.user.nickname, "/users/#{@user.nickname}" %></span>

@@ -3,7 +3,7 @@ class Cook < ApplicationRecord
 
   validates :image, presence: true
   validates :cooking_name, presence: true
-  validates :description, presence: true
+  validates :recipe, presence: true
 
   belongs_to :user
   has_many :post_comments, dependent: :destroy

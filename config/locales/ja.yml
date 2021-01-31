@@ -4,7 +4,7 @@ ja:
       cook:
         cooking_name: 料理名
         image: 料理写真
-        description: レシピ
+        recipe: レシピ
       post_comment:
         comment: コメント
       user:

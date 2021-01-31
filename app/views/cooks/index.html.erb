@@ -9,7 +9,7 @@
           <!--検索ボックス-->
            <div class="searchbox row mt-2 pl-3">
             <%= search_form_for @q, url: cooks_path, class:"col-12 mt-2" do |f| %>
-            <%= f.search_field :cooking_name_or_description_cont, placeholder: 'キーワードを入力...', class:"mt-2" %>
+            <%= f.search_field :cooking_name_or_recipe_cont, placeholder: 'キーワードを入力...', class:"mt-2" %>
             <%= f.submit ("検索") , class: "btn btn-sm btn-outline-success col-12 col-lg-2 mt-1" %>
             <%= link_to "クリア", cooks_path, class: "btn btn-sm btn-outline-primary col-12 col-lg-2 mt-1" %>
             <% end %>
