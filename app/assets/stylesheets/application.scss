@@ -120,12 +120,28 @@
     height: 40vw;
   }
 
-  .card-title .cook_show_description {
+  .card-title .cook_show_recipe {
     font-size: 11px;
   }
 
+  // top_page
+  .card-img-top {
+    height: 10vw;
+    object-fit: contain;
+  }
+
+  // mypage,cooks#indexページで使用される写真
   img {
     width: 80px;
     height: 80px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  // top_page
+  .card-img-top {
+    margin-top: 0px;
+    height: 30vw;
+    object-fit: cover;
   }
 }

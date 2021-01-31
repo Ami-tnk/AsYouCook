@@ -22,7 +22,7 @@
                 </p>
                 <p class="card-title">
                   <strong><i class="far fa-edit"></i><span>レシピ：</strong></span><br>
-                  <%= simple_format(h(@cook.recipe), {}, sanitize: false, wrapper_tag:"div", class:"cook_show_description") %>
+                  <%= simple_format(h(@cook.recipe), {}, sanitize: false, wrapper_tag:"div", class:"cook_show_recipe") %>
                 </p>
                 <p class="card-title">
                   <span><i class="fas fa-user"></i> By <%= link_to @cook.user.nickname, "/users/#{@user.nickname}" %></span>
