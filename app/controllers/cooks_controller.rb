@@ -6,7 +6,8 @@ class CooksController < ApplicationController
     # 検索オブジェクトを生成
     @q = Cook.ransack(params[:q])
     # 検索結果(公開中データを表示)
-    @cooks = @q.result(distinct: true).where(is_active: "true").order(updated_at: "DESC").page(params[:page])
+    @cooks = @q.result(distinct: true).where(is_active: "true").order(updated_at: "DESC").
+      page(params[:page])
   end
 
   def show
@@ -15,7 +16,8 @@ class CooksController < ApplicationController
       @user = User.find(@cook.user_id)
       @post_comment = PostComment.new
       # もし未確認の通知があれば、通知先の投稿詳細画面まで行くと確認済みになるようにする
-      if  @unchecked_notifications = current_user.passive_notifications.where(cook_id: @cook.id, checked: false)
+      if @unchecked_notifications = current_user.passive_notifications.
+          where(cook_id: @cook.id, checked: false)
         @unchecked_notifications.each do |notification|
           notification.update_attributes(checked: true)
         end

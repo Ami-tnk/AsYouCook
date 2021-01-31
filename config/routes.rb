@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get   'users/:nickname' => 'users#show'
   patch 'users/:nickname' => 'users#update'
   delete 'users/:nickname' => 'users#destroy', as: 'user_destroy'
-  get   'users/:nickname/edit' => 'users#edit', as: 'user_nickname_edit'
+  get 'users/:nickname/edit' => 'users#edit', as: 'user_nickname_edit'
 
   resources :cooks, only: [:index, :show, :create, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
