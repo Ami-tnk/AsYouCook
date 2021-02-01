@@ -13,5 +13,27 @@ RSpec.describe Cook, "Cookモデルに関するテスト", type: :model do
         is_expected.to eq false
       end
     end
+
+    context "recipeカラム" do
+      it "空白でないこと" do
+        cook.recipe = ''
+        is_expected.to eq false
+      end
+    end
+
+    context "image_idカラム" do
+      it "空白でないこと" do
+        cook.image = ''
+        is_expected.to eq false
+      end
+    end
+  end
+
+  describe 'アソシエーションのテスト' do
+    context 'Userモデルとの関係' do
+      it 'N:1となっている' do
+        expect(Cook.reflect_on_association(:user).macro).to eq :belongs_to
+      end
+    end
   end
 end
