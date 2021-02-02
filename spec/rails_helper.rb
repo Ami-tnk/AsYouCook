@@ -64,5 +64,4 @@ RSpec.configure do |config|
 
   # "FactryBot"を省略可能にするため記述
   config.include FactoryBot::Syntax::Methods
-
 end
