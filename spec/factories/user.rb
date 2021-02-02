@@ -6,5 +6,9 @@ FactoryBot.define do
     password_confirmation { 'password' }
     introduction { Faker::Lorem.characters(number: 30) }
     profile_image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg')) }
+
+    after(:create) do |user|
+      create_list(:cook, 3, user: user)
+    end
   end
 end
