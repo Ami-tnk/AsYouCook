@@ -12,10 +12,32 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         expect(user.errors[:nickname]).to include("を入力してください")
       end
 
-      it '一意性があり、エラーメッセージが返ってきてるか' do
+      it '一意性があり、エラーメッセージが返ってきているか' do
         user.nickname = other_user.nickname
         expect(user.valid?).to eq false
         expect(user.errors[:nickname]).to include("はすでに存在します")
+      end
+    end
+
+    context 'emailカラム' do
+      it '空白の場合バリデーションチェックされ空白のエラーメッセージが返ってきているか' do
+        user.email = ''
+        expect(user.valid?).to eq false
+        expect(user.errors[:email]).to include("を入力してください")
+      end
+
+      it '一意性があり、エラーメッセージが返ってきているか' do
+        user.email = other_user.email
+        expect(user.valid?).to eq false
+        expect(user.errors[:email]).to include("はすでに存在します")
+      end
+    end
+
+    context 'passwordカラム' do
+      it '空白の場合バリデーションチェックされ空白のエラーメッセージが返ってきているか' do
+        user.password = ''
+        expect(user.valid?).to eq false
+        expect(user.errors[:password]).to include("を入力してください")
       end
     end
   end
