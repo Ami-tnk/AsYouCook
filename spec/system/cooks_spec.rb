@@ -31,18 +31,18 @@ describe '料理投稿機能', type: :system do
         fill_in 'user[email]', with: user.email
         fill_in 'user[password]', with: user.password
         click_button 'ログインする'
+        visit cooks_path
       end
 
       it 'URLが正しいこと' do
-        visit cooks_path
         expect(current_path).to eq '/cooks'
       end
       it '公開ステータス:trueの投稿が表示される' do
         expect(cook.is_active).to eq true
       end
       it '自分の投稿と他人の投稿の投稿が表示される' do
-        # expect(page).to have_content "cook[cooking_name]"
-        # expect(page).to have_content "other_cook[cooking_name]"
+        expect(page).to have_content cook.user.nickname
+        expect(page).to have_content other_cook.user.nickname
       end
     end
   end
@@ -73,7 +73,7 @@ describe '料理投稿機能', type: :system do
       end
     end
 
-    context '投稿料理がログインユーザーの投稿の時' do
+    context '投稿料理詳細画面がログインユーザーの投稿時' do
       before do
         visit new_user_session_path
         fill_in 'user[email]', with: user.email
@@ -88,6 +88,33 @@ describe '料理投稿機能', type: :system do
       end
       it '投稿の削除リンクが表示される' do
         expect(page).to have_link '削除', href: cook_path(cook)
+      end
+    end
+  end
+
+  describe '料理編集画面のテスト'do
+    context '画面を表示した時' do
+      before do
+        visit new_user_session_path
+        fill_in 'user[email]', with: user.email
+        fill_in 'user[password]', with: user.password
+        click_button 'ログインする'
+        visit cook_path(cook)
+        cook.user_id == user.id
+        visit edit_cook_path(cook)
+      end
+      it 'URLが正しい'do
+        expect(current_path).to eq '/cooks/' + cook.id.to_s + '/edit'
+      end
+      it '編集前の料理名とレシピがフォームに表示されている' do
+      expect(page).to have_field 'cook[cooking_name]', with: cook.cooking_name
+      expect(page).to have_field 'cook[recipe]', with: cook.recipe
+      end
+      it '編集ボタンが表示される' do
+        expect(page).to have_button '保存'
+      end
+      it '戻るボタンが表示される' do
+        expect(page).to have_link '戻る', href: cook_path(cook)
       end
     end
   end
