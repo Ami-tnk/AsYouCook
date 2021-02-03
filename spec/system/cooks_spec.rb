@@ -1,37 +1,122 @@
 require 'rails_helper'
 
-describe '料理投稿機能' do, type: :system do
-  describe 'みんなの料理(一覧表示機能)のテスト' do
-    before do
-      user_a = FactoryBot.create(:user, nickname: 'A', email: 'a@a')
-      FacroyrBot.create(:cook, cooking_name: '餃子',recipe: 'test', image: 'test.jpg', user: user_a )
-      #indexpageに遷移しておく
-      visit cooks_path
-    end
+describe '料理投稿機能', type: :system do
 
-    context '内容を表示させた時' do
+  let!(:user) { create(:user) }
+  let!(:other_user) { create(:user) }
+  let!(:cook) { create(:cook, user: user) }
+  let!(:other_cook) { create(:cook, user: other_user) }
+
+  describe 'みんなの料理(一覧表示機能)のテスト' do
+    context 'userがログインしていない時' do
+      before do
+        visit cooks_path  #indexpageに遷移
+      end
+
       it 'URLが正しいこと' do
         expect(current_path).to eq '/cooks'
       end
-      it '自分の投稿と他人の投稿が表示される' do
-        
+      it '公開ステータス:trueの投稿が表示される' do
+        expect(cook.is_active).to eq true
+      end
+      it '自分の投稿と他人の投稿の投稿が表示される' do
+        expect(page).to have_content cook.user.nickname
+        expect(page).to have_content other_cook.user.nickname
+      end
+    end
+
+    context 'userがログインしている時' do
+      before do
+        visit new_user_session_path
+        fill_in 'user[email]', with: user.email
+        fill_in 'user[password]', with: user.password
+        click_button 'ログインする'
+      end
+
+      it 'URLが正しいこと' do
+        visit cooks_path
+        expect(current_path).to eq '/cooks'
+      end
+      it '公開ステータス:trueの投稿が表示される' do
+        expect(cook.is_active).to eq true
+      end
+      it '自分の投稿と他人の投稿の投稿が表示される' do
+        # expect(page).to have_content "cook[cooking_name]"
+        # expect(page).to have_content "other_cook[cooking_name]"
+      end
+    end
+  end
+
+  describe '料理詳細画面のテスト' do
+    context 'userがログインしていない時' do
+      before do
+        visit cook_path(cook)
+      end
+
+      it 'URLが正しい'do
+        expect(current_path).to eq '/cooks/' + cook.id.to_s
+      end
+      it '投稿料理名が表示されている' do
+        expect(page).to have_content cook.cooking_name
+      end
+      it '投稿レシピが表示されている' do
+        expect(page).to have_content cook.recipe
+      end
+      it '作成ユーザー名がリンク表示されている' do
+        expect(page).to have_content cook.user.nickname
+      end
+      it '投稿の編集リンクが表示されない' do
+        expect(page).to have_no_content '編集'
+      end
+      it '投稿の削除リンクが表示されない' do
+        expect(page).to have_no_content '削除'
+      end
+    end
+
+    context '投稿料理がログインユーザーの投稿の時' do
+      before do
+        visit new_user_session_path
+        fill_in 'user[email]', with: user.email
+        fill_in 'user[password]', with: user.password
+        click_button 'ログインする'
+        visit cook_path(cook)
+        cook.user_id == user.id
+      end
+
+      it '投稿の編集リンクが表示される' do
+        expect(page).to have_link '編集', href: edit_cook_path(cook)
+      end
+      it '投稿の削除リンクが表示される' do
+        expect(page).to have_link '削除', href: cook_path(cook)
       end
     end
   end
 
   describe '新規投稿した時のテスト' do
-    before do
-      #ユーザー作成
-      #投稿内容作成
-    end
     context '投稿した時' do
-      it '投稿画像が正しく表示される' do
+      before do
+        visit new_user_session_path
+        fill_in 'user[email]', with: user.email
+        fill_in 'user[password]', with: user.password
+        click_button 'ログインする'
+        visit mypage_path
       end
-      it '料理名が正しく表示される' do
+
+      it '自分の新しい投稿が正しく保存される' do
+        attach_file 'cook[image]', "spec/fixtures/test.jpg"
+        fill_in 'cook[cooking_name]', with: cook.cooking_name
+        fill_in 'cook[recipe]', with: cook.recipe
+        click_button '保存'
+        expect(page).to have_content "料理を投稿しました!"
       end
-      it 'レシピが正しく表示される' do
-      end
-      it 'リダイレクト先がmypageになっている'do
+      it '投稿に失敗する' do
+	        click_button '保存'
+	        expect(page).to have_content 'エラー'
+	        expect(current_path).to eq('/mypage')
+	    end
+      it 'リダイレクト先がmypageになっている' do
+        click_button '保存'
+        expect(current_path).to eq '/mypage'
       end
     end
   end
