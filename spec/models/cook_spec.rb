@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Cook, 'Cookモデルに関するテスト', type: :model do
+RSpec.describe 'Cookモデルに関するテスト', type: :model do
   describe 'バリデーションのテスト' do
     let(:user) { create(:user) }
     let!(:cook) { build(:cook, user_id: user.id) }

@@ -67,7 +67,7 @@ describe '料理投稿機能', type: :system do
       it '投稿に失敗しエラーメッセージ が表示されるか' do
         click_button '保存'
         expect(page).to have_content 'エラー'
-	    end
+      end
       it '投稿後のリダイレクト先がmypageになっている' do
         attach_file 'cook[image]', "spec/fixtures/test.jpg"
         fill_in 'cook[cooking_name]', with: cook.cooking_name

@@ -12,6 +12,8 @@ ja:
         nickname: ニックネーム
         introduction: 自己紹介
         profile_image: 画像
+        password: パスワード
+        password_confirmation: 確認用パスワード
   views:
     pagination:
       first: 最初

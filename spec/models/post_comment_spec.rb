@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostComment, 'PostCommentモデルのテスト', type: :model do
+RSpec.describe 'PostCommentモデルのテスト', type: :model do
 
   let!(:user) { create(:user) }
   let!(:cook) { build(:cook, user_id: user.id) }
