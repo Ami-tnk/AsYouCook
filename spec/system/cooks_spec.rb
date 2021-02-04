@@ -64,12 +64,14 @@ describe '料理投稿機能', type: :system do
         click_button '保存'
         expect(page).to have_content "料理を投稿しました!"
       end
-      it '投稿に失敗する' do
-	        click_button '保存'
-	        expect(page).to have_content 'エラー'
-	        expect(current_path).to eq('/mypage')
+      it '投稿に失敗しエラーメッセージ が表示されるか' do
+        click_button '保存'
+        expect(page).to have_content 'エラー'
 	    end
-      it 'リダイレクト先がmypageになっている' do
+      it '投稿後のリダイレクト先がmypageになっている' do
+        attach_file 'cook[image]', "spec/fixtures/test.jpg"
+        fill_in 'cook[cooking_name]', with: cook.cooking_name
+        fill_in 'cook[recipe]', with: cook.recipe
         click_button '保存'
         expect(current_path).to eq '/mypage'
       end
@@ -102,7 +104,7 @@ describe '料理投稿機能', type: :system do
       end
     end
 
-    context '投稿料理詳細画面がログインユーザーの投稿時' do
+    context 'ログインユーザーの投稿料理詳細画面の時' do
       before do
         visit new_user_session_path
         fill_in 'user[email]', with: user.email
@@ -115,8 +117,10 @@ describe '料理投稿機能', type: :system do
       it '投稿の編集リンクが表示される' do
         expect(page).to have_link '編集', href: edit_cook_path(cook)
       end
-      it '投稿の削除リンクが表示され、問題なく削除される' do
+      it '投稿の削除リンクが表示される、問題なく削除される' do
         expect(page).to have_link '削除', href: cook_path(cook)
+      end
+      it '投稿が削除される' do
         expect{ cook.destroy }.to change{ Cook.count }.by(-1)
       end
     end
@@ -130,7 +134,7 @@ describe '料理投稿機能', type: :system do
         fill_in 'user[password]', with: user.password
         click_button 'ログインする'
         visit cook_path(cook)
-        cook.user_id == user.id
+        cook.user_id = user.id
         visit edit_cook_path(cook)
       end
       it 'URLが正しい'do
@@ -155,7 +159,7 @@ describe '料理投稿機能', type: :system do
         fill_in 'user[password]', with: user.password
         click_button 'ログインする'
         visit cook_path(cook)
-        cook.user_id == user.id
+        cook.user_id = user.id
         visit edit_cook_path(cook)
       end
       it '更新に成功しサクセスメッセージが表示されるか' do

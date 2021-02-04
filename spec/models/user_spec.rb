@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Userモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     let!(:other_user) { create(:user) }
-    let(:user) { build(:user) }
+    let!(:user) { create(:user) }
 
     context 'nicknameカラム' do
       it '空白の場合にバリデーションチェックされ空白のエラーメッセージが返ってきているか' do
@@ -42,7 +42,9 @@ RSpec.describe 'Userモデルのテスト', type: :model do
     end
   end
 
+  # アソシエーションのテストはRailsがやってくれていることなのであまりテストしない
   describe 'アソシエーションのテスト' do
+    
     context 'Cookモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:cooks).macro).to eq :has_many

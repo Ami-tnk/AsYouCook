@@ -36,6 +36,7 @@ RSpec.describe Cook, 'Cookモデルに関するテスト', type: :model do
     end
   end
 
+  # アソシエーションのテストはRailsがやってくれていることなのであまりテストしない
   describe 'アソシエーションのテスト' do
     context 'Userモデルとの関係' do
       it 'N:1となっている' do
