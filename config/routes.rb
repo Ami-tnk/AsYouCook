@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations',
   }
 
-  get   '/mypage' => 'users#mypage'
+  get   '/mypage' => 'users#mypage', as: 'mypage'
   get   'users/:nickname' => 'users#show'
   patch 'users/:nickname' => 'users#update'
   delete 'users/:nickname' => 'users#destroy', as: 'user_destroy'

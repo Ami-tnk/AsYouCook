@@ -4,13 +4,13 @@ describe 'ユーザーログイン機能', type: :system do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
   let!(:cook) { create(:cook, user: user) }
+  let!(:other_cook) { create(:cook, user: other_user) }
 
   describe 'ユーザーログイン前のテスト' do
     context 'トップ画面にいる時' do
       before do
         visit root_path
       end
-
       it 'トップ画面がルートパス"/"であるか' do
         expect(current_path).to eq('/')
       end
@@ -33,7 +33,6 @@ describe 'ユーザーログイン機能', type: :system do
     before do
       visit new_user_registration_path
     end
-
     context '画面を表示した時' do
       it 'URLが正しい' do
         expect(current_path).to eq '/users/sign_up'
@@ -78,7 +77,6 @@ describe 'ユーザーログイン機能', type: :system do
     before do
       visit new_user_session_path
     end
-
     context '画面を表示した時' do
       it 'URLが正しい' do
         expect(current_path).to eq '/users/sign_in'
@@ -114,9 +112,7 @@ describe 'ユーザーログイン機能', type: :system do
       fill_in 'user[email]', with: user.email
       fill_in 'user[password]', with: user.password
       click_button 'ログインする'
-      visit mypage_path
     end
-
     context '画面を表示した時' do
       it 'お知らせ画面が表示される' do
         expect(page).to have_content 'お知らせ'
@@ -133,30 +129,67 @@ describe 'ユーザーログイン機能', type: :system do
     end
   end
 
+  describe 'ユーザーの編集画面のテスト' do
+    before do
+      visit new_user_session_path
+      fill_in 'user[email]', with: user.email
+      fill_in 'user[password]', with: 'password'
+      click_button 'ログインする'
+      visit "/users/#{user.nickname}/edit"
+    end
+    context '画面を表示した時' do
+      it '名前編集フォームに自分の名前が表示される' do
+        expect(page).to have_field 'ニックネーム', with: user.nickname
+      end
+      it 'プロフィール画像フォームが表示される' do
+        expect(page).to have_field '画像'
+      end
+      it '自己紹介フォームが表示される' do
+        expect(page).to have_field '自己紹介'
+      end
+      it '編集するボタンが表示される' do
+        expect(page). have_button '編集する'
+      end
+      it '退会するボタンが表示される' do
+        expect(page). have_link '',  href: user_destroy_path
+      end
+    end
+  end
+
   describe 'ユーザーの詳細画面のテスト' do
     before do
       visit new_user_session_path
       fill_in 'user[email]', with: user.email
       fill_in 'user[password]', with: 'password'
       click_button 'ログインする'
-      # visit '/user/:nickname' ←no route matches
+      visit "/users/#{other_user.nickname}"
     end
-
     context '画面を表示した時' do
-      it 'URLが正しい' do
-      end
       it 'ユーザー情報が表示されている' do
+        expect(page).to have_content other_user.nickname
+        expect(page).to have_content '自己紹介'
       end
       it 'そのユーザーの投稿料理が表示されている' do
+        #expect(page).to have_content other_cook.cookin_name テスト通らない
       end
     end
   end
 
   describe 'ユーザーログアウトのテスト' do
+    before do
+      visit new_user_session_path
+      fill_in 'user[email]', with: user.email
+      fill_in 'user[password]', with: 'password'
+      click_button 'ログインする'
+    end
     context 'ログアウト機能のテスト' do
       it '正しくログアウトされ、新規登録リンクが表示されている' do
+        click_link 'ログアウト'
+        expect(page).to have_link '', href: new_user_registration_path
       end
-      it 'ログアウト後のリダイレクト先がトップ画面になっている' do
+      it 'リダイレクト先がトップ画面になっている' do
+        click_link 'ログアウト'
+        expect(current_path).to eq('/')
       end
     end
   end

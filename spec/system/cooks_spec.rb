@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe '料理投稿機能', type: :system do
-
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
   let!(:cook) { create(:cook, user: user) }
@@ -10,9 +9,8 @@ describe '料理投稿機能', type: :system do
   describe 'みんなの料理(一覧表示機能)のテスト' do
     context 'userがログインしていない時' do
       before do
-        visit cooks_path  #indexpageに遷移
+        visit cooks_path # indexpageに遷移
       end
-
       it 'URLが正しいこと' do
         expect(current_path).to eq '/cooks'
       end
@@ -24,7 +22,6 @@ describe '料理投稿機能', type: :system do
         expect(page).to have_content other_cook.user.nickname
       end
     end
-
     context 'userがログインしている時' do
       before do
         visit new_user_session_path
@@ -47,7 +44,7 @@ describe '料理投稿機能', type: :system do
     end
   end
 
-    describe '新規投稿した時のテスト' do
+  describe '新規投稿した時のテスト' do
     context '投稿した時' do
       before do
         visit new_user_session_path
@@ -56,7 +53,6 @@ describe '料理投稿機能', type: :system do
         click_button 'ログインする'
         visit mypage_path
       end
-
       it '自分の新しい投稿が正しく保存される' do
         attach_file 'cook[image]', "spec/fixtures/test.jpg"
         fill_in 'cook[cooking_name]', with: cook.cooking_name
@@ -83,8 +79,7 @@ describe '料理投稿機能', type: :system do
       before do
         visit cook_path(cook)
       end
-
-      it 'URLが正しい'do
+      it 'URLが正しい' do
         expect(current_path).to eq '/cooks/' + cook.id.to_s
       end
       it '投稿料理名が表示されている' do
@@ -103,7 +98,6 @@ describe '料理投稿機能', type: :system do
         expect(page).to have_no_content '削除'
       end
     end
-
     context 'ログインユーザーの投稿料理詳細画面の時' do
       before do
         visit new_user_session_path
@@ -113,7 +107,6 @@ describe '料理投稿機能', type: :system do
         visit cook_path(cook)
         cook.user_id == user.id
       end
-
       it '投稿の編集リンクが表示される' do
         expect(page).to have_link '編集', href: edit_cook_path(cook)
       end
@@ -121,7 +114,7 @@ describe '料理投稿機能', type: :system do
         expect(page).to have_link '削除', href: cook_path(cook)
       end
       it '投稿が削除される' do
-        expect{ cook.destroy }.to change{ Cook.count }.by(-1)
+        expect { cook.destroy }.to change(Cook, :count).by(-1)
       end
     end
   end
@@ -137,12 +130,12 @@ describe '料理投稿機能', type: :system do
         cook.user_id = user.id
         visit edit_cook_path(cook)
       end
-      it 'URLが正しい'do
+      it 'URLが正しい' do
         expect(current_path).to eq '/cooks/' + cook.id.to_s + '/edit'
       end
       it '編集前の料理名とレシピがフォームに表示されている' do
-      expect(page).to have_field 'cook[cooking_name]', with: cook.cooking_name
-      expect(page).to have_field 'cook[recipe]', with: cook.recipe
+        expect(page).to have_field 'cook[cooking_name]', with: cook.cooking_name
+        expect(page).to have_field 'cook[recipe]', with: cook.recipe
       end
       it '編集ボタンが表示される' do
         expect(page).to have_button '保存'
@@ -151,7 +144,6 @@ describe '料理投稿機能', type: :system do
         expect(page).to have_link '戻る', href: cook_path(cook)
       end
     end
-
     context '更新処理に関するテスト' do
       before do
         visit new_user_session_path
@@ -163,8 +155,8 @@ describe '料理投稿機能', type: :system do
         visit edit_cook_path(cook)
       end
       it '更新に成功しサクセスメッセージが表示されるか' do
-        fill_in 'cook[cooking_name]', with: Faker::Lorem.characters(number:8)
-        fill_in 'cook[recipe]', with: Faker::Lorem.characters(number:30)
+        fill_in 'cook[cooking_name]', with: Faker::Lorem.characters(number: 8)
+        fill_in 'cook[recipe]', with: Faker::Lorem.characters(number: 30)
         click_button '保存'
         expect(page).to have_content '料理を編集しました!'
       end
@@ -175,11 +167,11 @@ describe '料理投稿機能', type: :system do
         expect(page).to have_content 'エラー'
       end
       it '更新後のリダイレクト先は正しいか' do
-        fill_in 'cook[cooking_name]', with: Faker::Lorem.characters(number:8)
-        fill_in 'cook[recipe]', with: Faker::Lorem.characters(number:30)
+        fill_in 'cook[cooking_name]', with: Faker::Lorem.characters(number: 8)
+        fill_in 'cook[recipe]', with: Faker::Lorem.characters(number: 30)
         click_button '保存'
         expect(page).to have_current_path cook_path(cook)
-	    end
+      end
     end
   end
 end
