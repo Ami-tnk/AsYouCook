@@ -11,7 +11,7 @@
     <strong>新着料理</strong>
   </h4>
 
-<div class="card-deck col-lg-12 pt-3 d-flex flex-wrap justify-content-center">
+<div class="card-deck col-lg-12 pt-3 p-0 m-0 d-flex flex-wrap justify-content-center">
   <% @cooks.each do |cook| %>
   <div class="card m-4 shadow-lg" style="width: 13rem;">
     <%= attachment_image_tag cook, :image, :fill, 300, 200, class:"card-img-top"; %>
@@ -34,5 +34,8 @@
     </div>
   </div>
   <% end %>
-  </div>
+</div>
+
+<div class="row col-12 m-0 p-0 justify-content-center">
+  <%= link_to " もっと見る ", cooks_path, class:"brn btn-outline-success" %>
 </div>

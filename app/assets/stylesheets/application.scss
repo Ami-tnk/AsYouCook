@@ -35,6 +35,17 @@
   transform: translateY(-50%);
 }
 
+// ハンバーガーメニュー枠線の太さと枠内の色指定
+.navbar-toggler {
+  border-width: 3px;
+  background: #f8f4e6;
+}
+
+// ハンバーガーメニュー三本線の変更
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,175,0,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
 // mypage画面
 .cook-newform {
   display: none;

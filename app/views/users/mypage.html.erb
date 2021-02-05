@@ -16,24 +16,28 @@
 
       <div class="row">
         <div class="col-12">
+          <!--通知情報ボタン-->
           <button id="notifications-btn" class="btn btn-outline-info col-12 col-lg-2 offset-lg-7 my-2 mr-2">
-            <i class="fa fa-paper-plane"></i>
+            <i class="fa fa-paper-plane"></i>お知らせ
             <!--もし未確認の通知があれば表示→投稿先まで行くと確認済みになる-->
             <% if @unchecked_notifications.exists? %>
               <i class="fas fa-user-plus"></i><span class="mr-2"><%= @unchecked_notifications.count %></span>
             <% end %>
           </button>
+          <!--end-->
+          <!--新規投稿ボタン-->
+          <button id="cook-newform-btn" class="btn btn-outline-success col-12 col-lg-2 my-2"><i class="fa fa-tags"></i>投稿</button>
+          <!--end-->
+          <!--通知情報-->
           <div class="notifications mb-2">
-            <!--通知情報-->
-              <%= render 'notifications/index', notifications: @notifications %>
-            <!--end-->
+            <%= render 'notifications/index', notifications: @notifications %>
           </div>
-          <button id="cook-newform-btn" class="btn btn-outline-success col-12 col-lg-2 my-2"><i class="fa fa-tags"></i></button>
+          <!--end-->
+          <!--料理新規投稿-->
           <div class="cook-newform mb-2">
-            <!--料理新規投稿-->
-              <%= render 'cooks/newform' %>
-            <!--end-->
+            <%= render 'cooks/newform' %>
           </div>
+          <!--end-->
         </div>
       </div>
 
