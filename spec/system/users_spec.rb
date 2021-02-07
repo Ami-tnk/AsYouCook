@@ -146,7 +146,6 @@ describe 'ユーザーログイン機能', type: :system do
       end
       it '自己紹介フォームが表示される' do
         expect(page).to have_field '自己紹介'
-<<<<<<< HEAD
       end
       it '編集するボタンが表示される' do
         expect(page). have_button '編集する'
@@ -172,33 +171,12 @@ describe 'ユーザーログイン機能', type: :system do
       end
       it '他のユーザーの投稿料理が表示されている' do
         expect(page).to have_content other_cook.cooking_name
-=======
       end
       it '編集するボタンが表示される' do
         expect(page). have_button '編集する'
       end
       it '退会するボタンが表示される' do
         expect(page). have_link '',  href: user_destroy_path
-      end
-    end
-  end
-
-  describe 'ユーザーの詳細画面のテスト' do
-    before do
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: 'password'
-      click_button 'ログインする'
-      visit "/users/#{other_user.nickname}"
-    end
-    context '画面を表示した時' do
-      it 'ユーザー情報が表示されている' do
-        expect(page).to have_content other_user.nickname
-        expect(page).to have_content '自己紹介'
-      end
-      it 'そのユーザーの投稿料理が表示されている' do
-        #expect(page).to have_content other_cook.cookin_name テスト通らない
->>>>>>> 02d7d6d3ea882d61240ff70cd255ad83e9dfa91e
       end
     end
   end

@@ -5,7 +5,7 @@
       <div class="col-12 border border-warning rounded mt-3">
         <h4 class="row p-2 pl-3" style="background:#ffdead"><strong><i class="fas fa-utensils"></i> みんなの料理一覧</strong></h4>
 
-        <div class="col-12">
+        <div class="col-12 p-0">
           <!--検索ボックス-->
            <div class="searchbox row mt-2">
             <%= search_form_for @q, url: cooks_path, class:"col-12 mt-2" do |f| %>
@@ -18,7 +18,7 @@
           <!--end-->
 
           <div class="users-cooks col-12 p-0 d-flex flex-wrap">
-            <div class="d-flex my-box-light flex-wrap justify-content-center">
+            <div class="d-flex my-box-light flex-wrap justify-content-center p-0">
             <% @cooks.each do |cook| %>
             <table>
               <tr>
@@ -37,7 +37,7 @@
                 <td class="user_nickname">
                 <span class="text-secondary">
                   <i class="fas fa-user text-secondary"></i>
-                  <%= link_to  truncate(cook.user.nickname, length: 8), "/users/#{cook.user.nickname}", class: "user_nickname text-secondary" %>
+                  <%= link_to  truncate(cook.user.nickname, length: 7), "/users/#{cook.user.nickname}", class: "user_nickname text-secondary" %>
                 </span>
                 </td>
               </tr>
