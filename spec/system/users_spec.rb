@@ -148,10 +148,23 @@ describe 'ユーザーログイン機能', type: :system do
         expect(page).to have_field '自己紹介'
       end
       it '編集するボタンが表示される' do
-        expect(page). have_button '編集する'
+        expect(page).to have_button '編集する'
       end
       it '退会するボタンが表示される' do
-        expect(page). have_link '',  href: user_destroy_path(user.nickname)
+        expect(page).to have_content '退会する'
+      end
+    end
+    context '編集する時' do
+      it '編集後リダイレクト先がmypage画面になり、フラッシュメッセージが表示される' do
+        fill_in 'user[nickname]', with: Faker::Lorem.characters(number: 5)
+        click_button '編集する'
+        expect(current_path).to eq '/mypage'
+        expect(page).to have_content "編集しました"
+      end
+    end
+    context '退会する時' do
+      it 'ユーザーが削除される' do
+        expect { user.destroy }.to change(User, :count).by(-1)
       end
     end
   end
@@ -170,13 +183,7 @@ describe 'ユーザーログイン機能', type: :system do
         expect(page).to have_content '自己紹介'
       end
       it '他のユーザーの投稿料理が表示されている' do
-        expect(page).to have_content other_cook.cooking_name
-      end
-      it '編集するボタンが表示される' do
-        expect(page). have_button '編集する'
-      end
-      it '退会するボタンが表示される' do
-        expect(page). have_link '',  href: user_destroy_path
+        expect(page).to have_content other_cook.cooking_name #テスト通らない
       end
     end
   end

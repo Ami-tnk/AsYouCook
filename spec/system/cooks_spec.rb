@@ -30,7 +30,6 @@ describe '料理投稿機能', type: :system do
         click_button 'ログインする'
         visit cooks_path
       end
-
       it 'URLが正しいこと' do
         expect(current_path).to eq '/cooks'
       end
