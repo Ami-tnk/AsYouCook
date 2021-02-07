@@ -31,6 +31,8 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  # truncateメソッドを使用のため、ActionView::Helpers::TextHelperを含めるように設定
+  config.include ActionView::Helpers::TextHelper
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

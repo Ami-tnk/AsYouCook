@@ -183,7 +183,7 @@ describe 'ユーザーログイン機能', type: :system do
         expect(page).to have_content '自己紹介'
       end
       it '他のユーザーの投稿料理が表示されている' do
-        expect(page).to have_content other_cook.cooking_name #テスト通らない
+        expect(page).to have_content truncate(other_cook.cooking_name, length: 7) #テスト通らない
       end
     end
   end

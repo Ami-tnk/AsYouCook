@@ -18,8 +18,8 @@ describe '料理投稿機能', type: :system do
         expect(cook.is_active).to eq true
       end
       it '自分の投稿と他人の投稿の投稿が表示される' do
-        expect(page).to have_content cook.user.nickname
-        expect(page).to have_content other_cook.user.nickname
+        expect(page).to have_content truncate(cook.user.nickname, length: 7)
+        expect(page).to have_content truncate(other_cook.user.nickname, length: 7)
       end
     end
     context 'userがログインしている時' do
@@ -37,8 +37,8 @@ describe '料理投稿機能', type: :system do
         expect(cook.is_active).to eq true
       end
       it '自分の投稿と他人の投稿の投稿が表示される' do
-        expect(page).to have_content cook.user.nickname
-        expect(page).to have_content other_cook.user.nickname
+        expect(page).to have_content truncate(cook.user.nickname, length: 7)
+        expect(page).to have_content truncate(other_cook.user.nickname, length: 7)
       end
     end
   end
