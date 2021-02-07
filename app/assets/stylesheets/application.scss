@@ -109,6 +109,11 @@
   object-fit: cover;
 }
 
+// topページのuser_nickname表示
+.user_nickname_top {
+  font-size: 11px;
+}
+
 
 // 767px以下用（タブレット／スマートフォン用）
 @media screen and (max-width: 767px) {
@@ -137,8 +142,14 @@
 
   // mypage,cooks#indexページで使用される写真
   img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
+  }
+
+　// cooks#indexページのuser_nickname表示
+  .user_nickname {
+    width: 100px;
+    font-size: 7px;
   }
 }
 

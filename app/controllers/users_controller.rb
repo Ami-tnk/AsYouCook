@@ -48,8 +48,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find_by(nickname: params[:nickname])
-    user.destroy
+    @user = current_user
+    current_user_nickname = current_user.nickname
+    @user.destroy
     redirect_to root_path, notice: "ありがとうございました。またのご利用を心よりお待ちしております。"
   end
 
