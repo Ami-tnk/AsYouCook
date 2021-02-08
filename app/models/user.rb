@@ -14,6 +14,6 @@ class User < ApplicationRecord
                                    foreign_key: 'visited_id', dependent: :destroy
 
   # nickname, emailは重複不可に設定
-  validates :nickname, presence: true, uniqueness: true
+  validates :nickname, presence: true, uniqueness: true, length: {maximum: 20}
   validates :email, presence: true, uniqueness: true
 end

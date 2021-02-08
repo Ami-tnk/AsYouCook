@@ -11,7 +11,15 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         expect(user.valid?).to eq false
         expect(user.errors[:nickname]).to include("を入力してください")
       end
-
+      it '20文字以下であること' do
+        user.nickname = Faker::Lorem.characters(number: 20)
+        expect(user.valid?).to eq true
+      end
+      it '21文字以上だとバリデーションチェックされエラーメッセージが表示されること' do
+        user.nickname = Faker::Lorem.characters(number: 21)
+        expect(user.valid?).to eq false
+        expect(user.errors[:nickname]).to include("は20文字以内で入力してください")
+      end
       it '一意性があり、エラーメッセージが返ってきているか' do
         user.nickname = other_user.nickname
         expect(user.valid?).to eq false
