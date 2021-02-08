@@ -31,8 +31,8 @@ describe 'コメント機能', type: :system do
     end
   end
 
-  context '料理詳細画面を表示した時' do
-    let!(:other_post_comment) {create(:post_comment, cook: cook, user: other_user)}
+  context '他のユーザーの料理詳細画面を表示した時' do
+    let!(:other_post_comment) {create(:post_comment, cook: other_cook, user: other_user)}
     before { visit cook_path(other_cook) }
 
     it '他のユーザーのコメントには削除ボタンが表示されない' do
