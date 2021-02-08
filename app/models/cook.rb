@@ -37,6 +37,11 @@ class Cook < ApplicationRecord
     comment_members.each do |comment_member|
       save_notification_comment!(current_user, post_comment_id, comment_member['user_id'])
     end
+
+    # まだ誰もコメントしていない場合は、投稿者に通知を送る
+    if comment_members.blank?
+      save_notification_comment!(current_user, post_comment_id, user_id)
+    end
   end
 
   def save_notification_comment!(current_user, post_comment_id, visited_id)
