@@ -27,6 +27,12 @@
 ## 設計書
 ・UI flows
 ![UI flows](https://user-images.githubusercontent.com/73016008/107140111-3cf06b80-6963-11eb-9322-1cc931fe904a.png)
+・ER図
+![ER図_AsYouCook](https://user-images.githubusercontent.com/73016008/107328163-a30af900-6af1-11eb-9212-fdca26e99e30.png)
+・テーブル定義書
+[テーブル定義書_AsYouCook.pdf](https://github.com/Ami-tnk/AsYouCook/files/5949523/_AsYouCook.pdf)
+・アプリケーション詳細設計書
+[アプリケーション詳細設計書_AsYouCook.pdf](https://github.com/Ami-tnk/AsYouCook/files/5949525/_AsYouCook.pdf)
 
 ## チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/15y0Xc791D3haK0ixaf973oh9wgW_ibH4eA9NiI1WQwQ/edit#gid=0>
