@@ -89,12 +89,12 @@ RSpec.describe 'Cookモデルに関するテスト', type: :model do
 
     context '「いいね」をされた料理が自分の料理の時' do
       it '他のユーザーに「いいね」をされたら通知が1増えること' do
-        expect{ cook.create_notification_favorite!(other_user) }
-        .to change{ user.passive_notifications.count }.by(1)
+        expect { cook.create_notification_favorite!(other_user) }.
+          to change { user.passive_notifications.count }.by(1)
       end
       it '料理投稿したユーザーが自分で「いいね」をしたら通知が増えないこと' do
-        expect{ cook.create_notification_favorite!(user) }
-        .to change{ user.passive_notifications.count }.by(0)
+        expect { cook.create_notification_favorite!(user) }.
+          to change { user.passive_notifications.count }.by(0)
       end
     end
   end
@@ -107,8 +107,8 @@ RSpec.describe 'Cookモデルに関するテスト', type: :model do
 
     context '自分の料理にコメントされた時' do
       it 'コメントをされたら料理を投稿したユーザーに通知が1増えること' do
-        expect{ cook.create_notification_post_comment!(other_user, post_comment) }
-        .to change{ user.passive_notifications.count }.by(1)
+        expect { cook.create_notification_post_comment!(other_user, post_comment) }.
+          to change { user.passive_notifications.count }.by(1)
       end
     end
   end

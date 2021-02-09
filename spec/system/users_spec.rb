@@ -66,6 +66,7 @@ describe 'ユーザーログイン機能', type: :system do
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
       end
+
       it '正しく登録される' do
         expect { click_button '登録する' }.to change(User.all, :count).by(1)
       end
@@ -105,6 +106,7 @@ describe 'ユーザーログイン機能', type: :system do
         fill_in 'user[password]', with: 'password'
         click_button 'ログインする'
       end
+
       it 'ログイン後のリダイレクト先がmypage画面になっている' do
         expect(current_path).to eq '/mypage'
       end

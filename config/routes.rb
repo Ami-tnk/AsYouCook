@@ -8,10 +8,11 @@ Rails.application.routes.draw do
 
   get   '/mypage' => 'users#mypage', as: 'mypage'
   # constraintsで先頭が「/」以外のものは全て許すように設定（ex.ユーザー名「ami.T」と「.」使用も問題なく遷移）
-  get   'users/:nickname'  => 'users#show', constraints: { nickname: /[^\/]+/ }
+  get   'users/:nickname' => 'users#show', constraints: { nickname: /[^\/]+/ }
+  get 'users/:nickname/edit' => 'users#edit', constraints:
+    { nickname: /[^\/]+/ }, as: 'user_nickname_edit'
   patch 'users/:nickname' => 'users#update', constraints: { nickname: /[^\/]+/ }
-  delete 'users/:nickname' => 'users#destroy', constraints: { nickname: /[^\/]+/ }, as: 'user_destroy'
-  get 'users/:nickname/edit' => 'users#edit', constraints: { nickname: /[^\/]+/ }, as: 'user_nickname_edit'
+  delete 'users/:id' => 'users#destroy', as: 'user_destroy'
 
   resources :cooks, only: [:index, :show, :create, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]

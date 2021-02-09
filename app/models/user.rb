@@ -11,11 +11,11 @@ class User < ApplicationRecord
   # 「いいね」か「コメント」した時の通知
   has_many :active_notifications, class_name: 'Notification',
                                   foreign_key: 'visitor_id', dependent: :destroy
-   # 「いいね」か「コメント」された時の通知
+  # 「いいね」か「コメント」された時の通知
   has_many :passive_notifications, class_name: 'Notification',
                                    foreign_key: 'visited_id', dependent: :destroy
 
   # nickname, emailは重複不可に設定
-  validates :nickname, presence: true, uniqueness: true, length: {maximum: 20}
+  validates :nickname, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: true
 end
