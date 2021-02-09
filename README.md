@@ -23,14 +23,13 @@
 ・作った料理を記録したい時<br>
 ・他の人の料理を参考にしたい時
 
-
 ## 設計書
 ・UI flows
 ![UI flows](https://user-images.githubusercontent.com/73016008/107140111-3cf06b80-6963-11eb-9322-1cc931fe904a.png)
-・ER図
-![ER図_AsYouCook](https://user-images.githubusercontent.com/73016008/107328788-989d2f00-6af2-11eb-8434-8a7b40ddc91b.png)
-・[テーブル定義書_AsYouCook.pdf](https://github.com/Ami-tnk/AsYouCook/files/5949523/_AsYouCook.pdf)<br>
-・[アプリケーション詳細設計書_AsYouCook.pdf](https://github.com/Ami-tnk/AsYouCook/files/5949525/_AsYouCook.pdf)
+・ER図<br>
+![ER図](https://user-images.githubusercontent.com/73016008/107329509-9ab3bd80-6af3-11eb-8395-dfbba052b4b2.png)
+・[テーブル定義書](https://github.com/Ami-tnk/AsYouCook/files/5949523/_AsYouCook.pdf)<br>
+・[アプリケーション詳細設計書](https://github.com/Ami-tnk/AsYouCook/files/5949525/_AsYouCook.pdf)<br>
 
 ## チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/15y0Xc791D3haK0ixaf973oh9wgW_ibH4eA9NiI1WQwQ/edit#gid=0>
