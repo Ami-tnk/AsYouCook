@@ -7,10 +7,11 @@ describe 'ユーザーログイン機能', type: :system do
   let!(:other_cook) { create(:cook, user: other_user) }
 
   describe 'ユーザーログイン前のテスト' do
+    before do
+      visit root_path
+    end
+
     context 'トップ画面にいる時' do
-      before do
-        visit root_path
-      end
       it 'トップ画面がルートパス"/"であるか' do
         expect(current_path).to eq('/')
       end
@@ -33,6 +34,7 @@ describe 'ユーザーログイン機能', type: :system do
     before do
       visit new_user_registration_path
     end
+
     context '画面を表示した時' do
       it 'URLが正しい' do
         expect(current_path).to eq '/users/sign_up'
@@ -56,6 +58,7 @@ describe 'ユーザーログイン機能', type: :system do
         expect(page).to have_button '登録する'
       end
     end
+
     context '新規登録した時' do
       before do
         fill_in 'user[nickname]', with: Faker::Lorem.characters(number: 3)
@@ -77,6 +80,7 @@ describe 'ユーザーログイン機能', type: :system do
     before do
       visit new_user_session_path
     end
+
     context '画面を表示した時' do
       it 'URLが正しい' do
         expect(current_path).to eq '/users/sign_in'
@@ -94,6 +98,7 @@ describe 'ユーザーログイン機能', type: :system do
         expect(page).to have_button 'ログインする'
       end
     end
+
     context 'ログインした時' do
       before do
         fill_in 'user[email]', with: user.email
@@ -113,6 +118,7 @@ describe 'ユーザーログイン機能', type: :system do
       fill_in 'user[password]', with: user.password
       click_button 'ログインする'
     end
+
     context '画面を表示した時' do
       it 'お知らせ画面が表示される' do
         expect(page).to have_content 'お知らせ'
@@ -137,6 +143,7 @@ describe 'ユーザーログイン機能', type: :system do
       click_button 'ログインする'
       visit "/users/#{user.nickname}/edit"
     end
+
     context '画面を表示した時' do
       it '名前編集フォームに自分の名前が表示される' do
         expect(page).to have_field 'ニックネーム', with: user.nickname
@@ -154,6 +161,7 @@ describe 'ユーザーログイン機能', type: :system do
         expect(page).to have_content '退会する'
       end
     end
+
     context '編集する時' do
       it '編集後リダイレクト先がmypage画面になり、フラッシュメッセージが表示される' do
         fill_in 'user[nickname]', with: Faker::Lorem.characters(number: 5)
@@ -162,6 +170,7 @@ describe 'ユーザーログイン機能', type: :system do
         expect(page).to have_content "編集しました"
       end
     end
+
     context '退会する時' do
       it 'ユーザーが削除される' do
         expect { user.destroy }.to change(User, :count).by(-1)
@@ -177,6 +186,7 @@ describe 'ユーザーログイン機能', type: :system do
       click_button 'ログインする'
       visit "/users/#{other_user.nickname}"
     end
+
     context '画面を表示した時' do
       it '他のユーザー情報が表示されている' do
         expect(page).to have_content other_user.nickname
@@ -195,6 +205,7 @@ describe 'ユーザーログイン機能', type: :system do
       fill_in 'user[password]', with: 'password'
       click_button 'ログインする'
     end
+
     context 'ログアウト機能のテスト' do
       it '正しくログアウトされ、新規登録リンクが表示されている' do
         click_link 'ログアウト'
