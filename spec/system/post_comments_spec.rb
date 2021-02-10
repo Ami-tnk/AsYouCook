@@ -18,7 +18,6 @@ describe 'コメント機能', type: :system do
     # post_commentを作成
     let!(:post_comment) { create(:post_comment, cook: other_cook, user: user) }
     # リロード（再度訪ねる）することでコメントが表示される
-
     before { visit cook_path(other_cook) }
 
     it 'コメント欄が表示されている' do
