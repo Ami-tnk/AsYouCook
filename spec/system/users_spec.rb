@@ -143,7 +143,7 @@ describe 'ユーザーログイン機能', type: :system do
       fill_in 'user[email]', with: user.email
       fill_in 'user[password]', with: 'password'
       click_button 'ログインする'
-      visit "/users/#{user.nickname}/edit"
+      visit user_nickname_edit_path(user.nickname)
     end
 
     context '画面を表示した時' do
@@ -186,7 +186,7 @@ describe 'ユーザーログイン機能', type: :system do
       fill_in 'user[email]', with: user.email
       fill_in 'user[password]', with: 'password'
       click_button 'ログインする'
-      visit "/users/#{other_user.nickname}"
+      visit user_nickname_path(other_user.nickname)
     end
 
     context '画面を表示した時' do
