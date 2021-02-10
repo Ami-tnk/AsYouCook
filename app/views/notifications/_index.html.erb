@@ -10,7 +10,9 @@
   <!--end-->
 　<!--通知文-->
   <% if notifications.exists? %>
-    <%= render notifications %>
+    <% notifications.each do |notification| %>
+      <%= render notification %>
+    <% end %>
   <% else %>
     <p class="m-0">通知はありません</p>
   <% end %>

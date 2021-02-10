@@ -17,6 +17,7 @@ describe 'コメント機能', type: :system do
   context '他のユーザーの料理詳細画面を表示した時' do
     # post_commentを作成
     let!(:post_comment) { create(:post_comment, cook: other_cook, user: user) }
+
     # リロード（再度訪ねる）することでコメントが表示される
     before { visit cook_path(other_cook) }
 

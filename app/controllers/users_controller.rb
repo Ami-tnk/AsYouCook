@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @cooks = @q.result(distinct: true).order(updated_at: "DESC").page(params[:page])
     # お気に入りに入れたデータを取り出す
     @favorite_cooks = @user.favorite_cooks
-    # 「いいね」か「コメント」をもらったら通知
+    # 「いいね」か「コメント」をもらった通知
     @notifications = current_user.passive_notifications.order("created_at DESC")
     # 未確認通知を取り出す
     @unchecked_notifications = current_user.passive_notifications.where(checked: false)
