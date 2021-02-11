@@ -1,4 +1,5 @@
 class CooksController < ApplicationController
+  # ログインユーザー以外の方は料理一覧や料理詳細画面は見れるように設定
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
