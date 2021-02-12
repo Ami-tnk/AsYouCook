@@ -2,7 +2,7 @@
 <% if @cook.errors.any? %>
   <div class="alert alert-danger" role="alert">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <p><strong>以下、<%= pluralize(@cook.errors.count, "件") %> のエラーをご確認ください:</strong></p>
+    <p><strong>以下、<%= @cook.errors.count %> 件のエラーをご確認ください:</strong></p>
     <ul>
       <% @cook.errors.full_messages.each do |message| %>
       <li><%= message %></li>

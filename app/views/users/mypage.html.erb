@@ -2,7 +2,7 @@
   <% if flash[:errors] %>
   <div class="alert alert-danger">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>以下、<%= pluralize(flash[:errors].count, "件") %> のエラーをご確認ください:</strong><br>
+    <strong>以下、<%= flash[:errors].count %> 件のエラーをご確認ください:</strong><br>
     <% flash[:error_full_messages].each do |message| %>
       ・<%= message %><br>
     <% end %>
