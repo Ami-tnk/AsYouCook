@@ -1,7 +1,7 @@
 <% cook.post_comments.each do |post_comment| %>
   <table style="table-layout:fixed;width:100%;">
     <tr>
-      <td style="width:20%;"><%= link_to post_comment.user.nickname, "/users/#{post_comment.user.nickname}" %><td>
+      <td style="word-wrap:break-word; width:20%;"><%= link_to post_comment.user.nickname, "/users/#{post_comment.user.nickname}" %><td>
       <td style="word-wrap:break-word; width:60%;"><%= post_comment.comment %></td>
       <td style="width:20%;">
         <% if post_comment.user == current_user %>
