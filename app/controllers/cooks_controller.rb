@@ -36,8 +36,8 @@ class CooksController < ApplicationController
       tags = Vision.get_image_data(@cook.image)
       tags.each do |tag|
         # FoodとついたTagは保存しない
-        if tag != "Food"
-          @cook.tags.create(name: tag)
+        if tag["description"] != "Food"
+          @cook.tags.create(name: tag["description"], score: (tag["score"] * 100))
         end
       end
       redirect_to mypage_path, notice: "料理を投稿しました!"

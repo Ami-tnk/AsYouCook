@@ -37,7 +37,7 @@ module Vision
       if (error = response_body['responses'][0]['error']).present?
         raise error['message']
       else
-        response_body['responses'][0]['labelAnnotations'].pluck('description').take(10)
+        response_body['responses'][0]['labelAnnotations']#.pluck('description', 'score').take(6)
       end
     end
   end
