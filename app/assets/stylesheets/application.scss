@@ -116,6 +116,12 @@
   font-size: 11px;
 }
 
+// showページのtag表示
+.tag-label {
+  color: #555555;
+  border: 1px solid #808080;
+  border-radius: 5px;
+}
 
 // 767px以下用（タブレット／スマートフォン用）
 @media screen and (max-width: 767px) {

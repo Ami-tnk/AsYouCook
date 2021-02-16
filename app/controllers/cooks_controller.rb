@@ -13,6 +13,7 @@ class CooksController < ApplicationController
   def show
     if user_signed_in?
       @cook = Cook.find(params[:id])
+      @tag = @cook.tags.limit(5)
       @user = User.find(@cook.user_id)
       @post_comment = PostComment.new
       # 未確認の通知があれば、通知先の投稿詳細画面まで行くと確認済みになるようにする
@@ -32,6 +33,13 @@ class CooksController < ApplicationController
     @cook = Cook.new(cook_params)
     @cook.user_id = current_user.id
     if @cook.save
+      tags = Vision.get_image_data(@cook.image)
+      tags.each do |tag|
+        # FoodとついたTagは保存しない
+        if tag != "Food"
+          @cook.tags.create(name: tag)
+        end
+      end
       redirect_to mypage_path, notice: "料理を投稿しました!"
     else
       redirect_to "/mypage", flash:

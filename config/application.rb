@@ -11,6 +11,9 @@ module AsYouCook
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    #lib/vision.rb を読み込むため追記
+    config.paths.add 'lib', eager_load: true
+
     # 日本語化表示のため追記
     config.i18n.default_locale = :ja
 
