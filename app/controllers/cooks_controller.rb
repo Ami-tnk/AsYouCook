@@ -13,7 +13,7 @@ class CooksController < ApplicationController
   def show
     if user_signed_in?
       @cook = Cook.find(params[:id])
-      @tag = @cook.tags.limit(5)
+      @tags = @cook.tags.limit(3)
       @user = User.find(@cook.user_id)
       @post_comment = PostComment.new
       # 未確認の通知があれば、通知先の投稿詳細画面まで行くと確認済みになるようにする
