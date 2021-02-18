@@ -11,20 +11,20 @@ class SearchesController < ApplicationController
     if cook.image.nil?
       redirect_to search_show_path, alert: "画像を選択してください。"
       return
-      # Vision APIでのタグ付け
     end
+    # Vision APIでのタグ付け
     tags = Vision.get_image_data(cook.image, true)
-
-    search = tags.map {|tag| tag["description"]}.first(3)
+    search = tags.map {|tag| tag["description"]}.first(5)
 
     if !search.nil?
       @tags = Tag.where(name: search).select(:cook_id).distinct
     else
-      flash[:alert] = "ヒットするレシピがありませんでした"
-      #適するレシピがなかったら他のレシピをランダムに5つ
+      redirect_to search_show_path, alert: "ヒットするレシピがありませんでした。"
     end
     @cooks = Cook.find(Cook.pluck(:id).shuffle[0..4])
   end
+
+  private
 
   def cook_params
     params.require(:cook).permit(:image)
