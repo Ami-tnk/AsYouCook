@@ -3,7 +3,7 @@
     <div class="cooks-index col-12 col-lg-10 offset-lg-1">
 
       <div class="col-12 border border-warning rounded mt-3">
-        <h4 class="row p-2 pl-3" style="background:#FFFFDD"><strong><i class="fas fa-utensils"></i> これ作る 〜画像検索〜</strong></h4>
+        <h4 class="row p-2 pl-3" style="background:#FFFFDD"><strong><i class="fas fa-search"></i> これ作る 〜画像検索〜</strong></h4>
 
         <div class="mt-4 d-flex justify-content-center">
           <div class="col-12 d-flex justify-content-center">
@@ -15,7 +15,7 @@
         </div>
 
         <% if @tags.present? %>
-          <h5 class="col-12 m-3" style="color:#660000;"><strong><i class="fas fa-star"></i>検索結果！</strong></h5>
+          <h5 class="col-12 m-3" style="color:#660000;"><strong><i class="fas fa-edit"></i> 検索結果</strong></h5>
           <div class="row">
             <div class="col-12 pt-3 d-flex flex-wrap justify-content-center">
             <% @tags.each do |tag| %>
