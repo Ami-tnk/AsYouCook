@@ -6,24 +6,24 @@ class SearchesController < ApplicationController
   end
 
   def search
+    @cook = Cook.new
     cook = Cook.new(cook_params)
-    # Vision APIでのタグ付け
+    if cook.image.nil?
+      redirect_to search_show_path, alert: "画像を選択してください。"
+      return
+      # Vision APIでのタグ付け
+    end
     tags = Vision.get_image_data(cook.image, true)
-    tags.each do |tag|
-      # FoodとついたTagは保存しない
-      if tag["description"] != "Food"
-        search_tags = tag(name: tag["description"], score: (tag["score"] * 100))
-      end
-    end
 
-    if params[:search]
-      @tags = Tag.where('name', "{params[:search]}")
-      @cooks = Cook.find(Cook.pluck(:id).shuffle[0..4])
+    search = tags.map {|tag| tag["description"]}.first(3)
+
+    if !search.nil?
+      @tags = Tag.where(name: search).select(:cook_id).distinct
     else
-      flash[:notice] = "ヒットする料理がありませんでした"
+      flash[:alert] = "ヒットするレシピがありませんでした"
       #適するレシピがなかったら他のレシピをランダムに5つ
-      @cooks = Cook.find(Cook.pluck(:id).shuffle[0..4])
     end
+    @cooks = Cook.find(Cook.pluck(:id).shuffle[0..4])
   end
 
   def cook_params

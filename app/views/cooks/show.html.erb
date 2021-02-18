@@ -27,8 +27,10 @@
                 <p class="card-title">
                   <span><i class="fas fa-user"></i> By <%= link_to @cook.user.nickname, "/users/#{@user.nickname}" %></span>
                 </p>
-                <% @tags.each do |tag| %>
-                  <span class="tag-label"><%= tag.name %></span>
+                <% if user_signed_in? %>
+                  <% @tags.each do |tag| %>
+                    <span class="tag-label"><%= tag.name %></span>
+                  <% end %>
                 <% end %>
               </div>
             </div>

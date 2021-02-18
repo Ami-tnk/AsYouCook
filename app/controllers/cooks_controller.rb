@@ -33,10 +33,13 @@ class CooksController < ApplicationController
     @cook = Cook.new(cook_params)
     @cook.user_id = current_user.id
     if @cook.save
-      tags = Vision.get_image_data(@cook.image)
+      tags = Vision.get_image_data(@cook.image, false)
       tags.each do |tag|
-        # FoodとついたTagは保存しない
-        if tag["description"] != "Food"
+        # Food, Recipe, Tableware, Ingredent とついたTagは保存しない
+        if tag["description"] != "Food" \
+          and tag["description"] != "Recipe" \
+          and tag["description"] != "Tableware" \
+          and tag["description"] != "Ingredient"
           @cook.tags.create(name: tag["description"], score: (tag["score"] * 100))
         end
       end

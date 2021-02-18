@@ -5,15 +5,17 @@
       <div class="col-12 border border-warning rounded mt-3">
         <h4 class="row p-2 pl-3" style="background:#FFFFDD"><strong><i class="fas fa-utensils"></i> これ作る 〜画像検索〜</strong></h4>
 
-        <div class="m-2">
-        <%= form_with model: @cook, url: search_path, method: :post, local: true do |f| %>
-          <%= f.attachment_field :image, placeholder: "画像" %>
-          <%= f.submit '検索', name: nil %>
-        <% end %>
+        <div class="mt-4 d-flex justify-content-center">
+          <div class="col-12 d-flex justify-content-center">
+            <%= form_with model: @cook, url: search_path, method: :post, local: true do |f| %>
+              <%= f.attachment_field :image, placeholder: "画像", class: "col-12" %><br/ >
+              <%= f.submit '検索', name: nil, class: "btn btn-sm btn-outline-dark col-12 mt-2" %>
+            <% end %>
+          </div>
         </div>
 
         <% if @tags.present? %>
-          <h5 class="row p-2 pl-3" my-3 style="background:#ffffc6"><strong><i class="fas fa-star"></i> 検索一覧</strong></h5>
+          <h5 class="col-12 m-3" style="color:#660000;"><strong><i class="fas fa-star"></i>検索結果！</strong></h5>
           <div class="row">
             <div class="col-12 pt-3 d-flex flex-wrap justify-content-center">
             <% @tags.each do |tag| %>
