@@ -26,11 +26,11 @@
 
 ## 設計書
 ・UI flows
-![UI flows](https://user-images.githubusercontent.com/73016008/107140111-3cf06b80-6963-11eb-9322-1cc931fe904a.png)
+![uiflows](https://user-images.githubusercontent.com/73016008/108358190-c5a7bb00-7231-11eb-9c0f-218ee8f42a09.png)
 ・ER図<br>
-![ER図](https://user-images.githubusercontent.com/73016008/107329509-9ab3bd80-6af3-11eb-8395-dfbba052b4b2.png)
-・[テーブル定義書](https://github.com/Ami-tnk/AsYouCook/files/5949523/_AsYouCook.pdf)<br>
-・[アプリケーション詳細設計書](https://github.com/Ami-tnk/AsYouCook/files/5950140/default.pdf)<br>
+![ER図 ](https://user-images.githubusercontent.com/73016008/108358178-c2143400-7231-11eb-99f7-09928dd954ef.png)
+・[テーブル定義書](https://github.com/Ami-tnk/AsYouCook/files/6002806/default.pdf)<br>
+・[アプリケーション詳細設計書](https://github.com/Ami-tnk/AsYouCook/files/6002807/1.pdf)<br>
 
 ## チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/15y0Xc791D3haK0ixaf973oh9wgW_ibH4eA9NiI1WQwQ/edit#gid=0>
