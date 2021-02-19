@@ -19,5 +19,8 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
   end
 
+  post '/search' => 'searches#search', as: 'search'
+  get '/search' => 'searches#show', as: 'search_show'
+
   delete 'notifications/destroy_all' => 'notifications#destroy_all', as: 'destroy_all_notification'
 end
