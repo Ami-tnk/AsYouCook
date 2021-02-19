@@ -14,7 +14,16 @@ class SearchesController < ApplicationController
     end
     # Vision APIでのタグ付け
     tags = Vision.get_image_data(cook.image, true)
-    @search = tags.map { |tag| tag["description"] }.first(3)
+    select_tags = tags.select{ |tag|
+      (tag["description"] != "Food") \
+      && (tag["description"] != "Recipe") \
+      && (tag["description"] != "Tableware") \
+      && (tag["description"] != "Ingredient") \
+      && (tag["description"] != "Cuisine") \
+      && (tag["description"] != "Dish") \
+      && (tag["description"] != "Cooking")
+    }
+    @search = select_tags.map { |tag| tag["description"] }.first(3)
 
     if !@search.nil?
       @tags = Tag.where(name: @search).select(:cook_id).distinct
