@@ -14,10 +14,10 @@ class SearchesController < ApplicationController
     end
     # Vision APIでのタグ付け
     tags = Vision.get_image_data(cook.image, true)
-    search = tags.map { |tag| tag["description"] }.first(5)
+    @search = tags.map { |tag| tag["description"] }.first(3)
 
-    if !search.nil?
-      @tags = Tag.where(name: search).select(:cook_id).distinct
+    if !@search.nil?
+      @tags = Tag.where(name: @search).select(:cook_id).distinct
       if @tags.count == 0
         redirect_to search_show_path, alert: "ヒットするレシピがありませんでした。"
       end

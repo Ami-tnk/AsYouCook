@@ -15,7 +15,15 @@
         </div>
 
         <% if @tags.present? %>
-          <h5 class="col-12 m-3" style="color:#660000;"><strong><i class="fas fa-edit"></i> 検索結果</strong></h5>
+          <h5 class="col-12 mt-3" style="color:#660000;"><strong><i class="fas fa-edit"></i> 検索結果</strong></h5>
+          <div class="col-12">
+            <p><strong>検索ワード:</strong>
+              <% @search.each do |search| %>
+                <span class="tag-label"><%= search %></span>
+              <% end %>
+            </p>
+          </div>
+
           <div class="row">
             <div class="col-12 pt-3 d-flex flex-wrap justify-content-center">
             <% @tags.each do |tag| %>

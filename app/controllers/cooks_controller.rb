@@ -35,11 +35,14 @@ class CooksController < ApplicationController
     if @cook.save
       tags = Vision.get_image_data(@cook.image, false)
       tags.each do |tag|
-        # Food, Recipe, Tableware, Ingredent とついたTagは保存しない
+        # 以下のTagは保存しない
         if (tag["description"] != "Food") \
           && (tag["description"] != "Recipe") \
           && (tag["description"] != "Tableware") \
-          && (tag["description"] != "Ingredient")
+          && (tag["description"] != "Ingredient") \
+          && (tag["description"] != "Cuisine") \
+          && (tag["description"] != "Dish") \
+          && (tag["description"] != "Cooking")
           @cook.tags.create(name: tag["description"], score: (tag["score"] * 100))
         end
       end
