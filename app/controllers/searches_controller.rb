@@ -18,8 +18,9 @@ class SearchesController < ApplicationController
 
     if !search.nil?
       @tags = Tag.where(name: search).select(:cook_id).distinct
-    else
-      redirect_to search_show_path, alert: "ヒットするレシピがありませんでした。"
+      if @tags.count == 0
+        redirect_to search_show_path, alert: "ヒットするレシピがありませんでした。"
+      end
     end
     @cooks = Cook.find(Cook.pluck(:id).shuffle[0..4])
   end
