@@ -13,7 +13,7 @@ class CooksController < ApplicationController
   def show
     if user_signed_in?
       @cook = Cook.find(params[:id])
-      @tags = @cook.tags.limit(3)
+      @tags = @cook.tags
       @user = User.find(@cook.user_id)
       @post_comment = PostComment.new
       # 未確認の通知があれば、通知先の投稿詳細画面まで行くと確認済みになるようにする
@@ -65,6 +65,22 @@ class CooksController < ApplicationController
   def update
     @cook = Cook.find(params[:id])
     if @cook.update(cook_params)
+      # 一度タグを全て消去
+      @cook.tags.destroy_all
+      # タグを新しく作成
+      tags = Vision.get_image_data(@cook.image, false)
+      tags.each do |tag|
+        # 以下のTagは保存しない
+        if (tag["description"] != "Food") \
+          && (tag["description"] != "Recipe") \
+          && (tag["description"] != "Tableware") \
+          && (tag["description"] != "Ingredient") \
+          && (tag["description"] != "Cuisine") \
+          && (tag["description"] != "Dish") \
+          && (tag["description"] != "Cooking")
+          @cook.tags.create(name: tag["description"], score: (tag["score"] * 100))
+        end
+      end
       redirect_to cook_path(@cook.id), notice: "料理を編集しました!"
     else
       render 'edit'
